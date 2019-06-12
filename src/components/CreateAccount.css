@@ -1,0 +1,61 @@
+.ca-logo{
+    width: 40%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.ca-card{
+    padding: 10px;
+
+}
+
+.ca-card-title{
+    font-size: 25px;
+    padding: 10px;
+}
+
+.ca-input{
+    width: 100%;
+    padding: 10px 10px 8px 10px;
+    font-size: 15px;
+    border: 1px solid #ff7200;
+    border-radius: 10px;
+}
+
+.ca-input:focus{
+    outline: none;
+}
+
+.ca-input-card{
+    margin-top: 10px;
+
+}
+
+.ca-btn{
+    padding:10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    width: 100%;
+    background-color: #f2f2f2;
+    transition: 0.3s;
+}
+
+.ca-btn:active{
+    background-color: #e6e6e6;
+}
+
+.ca-btn:focus{
+    outline: none;
+}
+
+.ca-link{
+    text-decoration: none;
+    color: #4286f4;
+}
+
+.ca-link:hover{
+    text-decoration: underline;
+}
