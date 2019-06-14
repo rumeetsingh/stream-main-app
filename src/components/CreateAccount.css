@@ -67,37 +67,3 @@
 .alert{position:relative;padding:.75rem 1.25rem;margin-bottom:1rem;border:1px solid transparent;border-radius:10px}
 .alert-danger{color:#721c24;background-color:#f8d7da;border-color:#f5c6cb}
 .alert-danger .alert-link{color:#491217}
-
-.ve-input{
-    text-align: center;
-    font-size: 20px;
-    width: 40px;
-    padding: 10px;
-    border: 1px solid #ff7200;
-    border-radius: 10px;
-    margin: 10px;
-}
-
-.ve-input:focus{
-    outline: none;
-}
-
-.ve-btn{
-    padding:10px;
-    font-size: 15px;
-    border: none;
-    border-radius: 10px;
-    margin-top: 12px;
-    margin-bottom: 25px;
-    width: 100px;
-    background-color: #f2f2f2;
-    transition: 0.3s;
-}
-
-.ve-btn:active{
-    background-color: #e6e6e6;
-}
-
-.ve-btn:focus{
-    outline: none;
-}

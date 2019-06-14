@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oxygen:700&display=swap');
 
 *{
     padding: 0px;
@@ -37,6 +39,7 @@ body{
 }
 
 .main-page{
+    width: 100%;
     position: relative;
     top:70px;
 }

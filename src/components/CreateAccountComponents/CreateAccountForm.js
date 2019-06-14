@@ -63,7 +63,7 @@ class CreateAccountForm extends React.Component {
                     <Field name="cpassword" component={this.renderInput} type="password" label="Confirm Password" />
                     <button className="ca-btn cursor-pointer" type="submit">Submit</button>
                 </form>
-                Already have an account? <Link to="/" className="ca-link">Sign in <FontAwesomeIcon icon={faCaretRight} /></Link>
+                Already have an account? <Link to="/signin" className="ca-link">Sign in <FontAwesomeIcon icon={faCaretRight} /></Link>
             </div>
         );
     };

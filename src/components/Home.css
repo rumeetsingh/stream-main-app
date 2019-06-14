@@ -1,0 +1,79 @@
+@media only screen and (max-width: 768px){
+    .welcome-text{
+        font-size: 40px !important;
+    }
+    .welcome-text-small{
+        font-size: 25px !important;
+    }
+}
+
+.welcome-row{
+    background-color: antiquewhite;
+}
+
+.welcome-container{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.welcome-text{
+    font-family: 'Oxygen', sans-serif;
+    font-size: 50px;
+}
+
+.welcome-text-small{
+    font-size: 30px;
+    margin-top: 35px;
+    margin-bottom: 60px;
+}
+
+.main-btn{
+    padding: 15px;
+    font-size: 20px;
+    background-color: #ff7200;
+    border:none;
+    border-radius: 10px;
+    color:white;
+    cursor: pointer;
+}
+
+.main-btn:hover{
+    background-color: #ff7b11;
+}
+
+.main-btn:active{
+    background-color: #e26500;
+}
+
+.main-btn:focus{
+    outline: none;
+}
+
+.hp-plans-row{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.plans-card{
+    margin-bottom: 10px;
+}
+
+.plans-card-header{
+    padding: 20px;
+    background-color: #ff7200;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.plans-card-body{
+    padding: 20px;
+    background-color: #f2f2f2;
+}
+
+.plans-card-footer{
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './CreateAccount.css';
 import CreateAccountForm from './CreateAccountComponents/CreateAccountForm';
 import RegisterSuccess from './CreateAccountComponents/RegisterSuccess';
@@ -19,10 +20,13 @@ class CreateAccount extends React.Component {
             return <CreateAccountForm onSubmit={this.onSubmit} />;
         }else if(this.state.onPage===2){
             return <RegisterSuccess />
-        }
-    }
+        };
+    };
 
     render() {
+        if(this.props.auth){
+            return <div>Invalid Request</div>;
+        };
         return (
             <div className="container-fluid text-center">
                 <div className="row justify-content-center">
@@ -40,4 +44,10 @@ class CreateAccount extends React.Component {
 }
 
 
-export default CreateAccount;
+const mapStateToProps = (state) => {
+    return {
+        auth : state.auth.isSignedIn
+    };
+};
+
+export default connect(mapStateToProps,)(CreateAccount);

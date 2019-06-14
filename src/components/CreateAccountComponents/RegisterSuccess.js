@@ -33,7 +33,7 @@ class RegisterSuccess extends React.Component{
                     <div className="ca-card-body">
                         Your account has been successfully created.
                         <br />
-                        You can now  <Link to="/" className="ca-link">Sign in <FontAwesomeIcon icon={faCaretRight} /></Link>
+                        You can now  <Link to="/signin" className="ca-link">Sign in <FontAwesomeIcon icon={faCaretRight} /></Link>
                     </div>
                 </div>
             );
