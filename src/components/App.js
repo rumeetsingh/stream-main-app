@@ -6,14 +6,14 @@ import CreateAccount from './CreateAccount';
 import SignIn from './SignIn';
 import Test from './CreateAccountComponents/Test';
 import history from '../history';
-import { signInAuto } from '../actions';
+import { signInAndfetchProfile } from '../actions';
 
 
 class App extends React.Component {
 
     componentDidMount() {
         if(localStorage.getItem("foxedouVlL8S")){
-            this.props.signInAuto(localStorage.getItem("foxedouVlL8S"));
+            this.props.signInAndfetchProfile(localStorage.getItem("foxedouVlL8S"));
         };
     };
 
@@ -30,4 +30,10 @@ class App extends React.Component {
 }
 
 
-export default connect(null,{ signInAuto })(App);
+const mapStateToProps = (state) => {
+    return {
+        auth : state.auth
+    };
+};
+
+export default connect(mapStateToProps,{ signInAndfetchProfile })(App);

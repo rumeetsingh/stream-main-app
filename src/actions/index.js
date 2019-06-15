@@ -1,4 +1,11 @@
-import { SIGN_IN,SIGN_IN_ERROR,SIGN_IN_AUTO,SIGN_OUT,SEARCH_SHOWS } from './types';
+import {
+    SIGN_IN,
+    SIGN_IN_ERROR,
+    SIGN_IN_AUTO,
+    SIGN_OUT,
+    SEARCH_SHOWS,
+    FETCH_PROFILE,
+} from './types';
 import history from '../history';
 import basic from '../apis/basic';
 
@@ -11,6 +18,7 @@ export const signIn = (formValues) => async (dispatch) => {
         "password" : password
         });
         dispatch({ type:SIGN_IN,payload:response.data.token });
+        dispatch(fetchProfile(response.data.token));
         localStorage.setItem("foxedouVlL8S",response.data.token);
         history.push('/');
     }catch(error){
@@ -23,6 +31,25 @@ export const signInAuto = (token) => {
         type : SIGN_IN_AUTO,
         payload : token
     };
+};
+
+export const fetchProfile = (token) => async (dispatch) => {
+    try{
+        const response = await basic.get('/user/me/',{
+            headers : {
+                Authorization : `Token ${token}`
+            }
+        });
+        dispatch({ type:FETCH_PROFILE,payload:response.data });
+        console.log(response.data);
+    }catch(error){
+        dispatch(signOut());
+    };
+};
+
+export const signInAndfetchProfile = (token) => async (dispatch) => {
+    await dispatch(signInAuto(token));
+    dispatch(fetchProfile(token));
 };
 
 export const signOut = () => (dispatch) => {

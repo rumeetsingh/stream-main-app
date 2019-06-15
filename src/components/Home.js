@@ -30,7 +30,7 @@ const Home = () => {
                     </div>
                     <div className="col-md-3 text-center">
                         <div className="plans-card">
-                            <div className="plans-card-header">₹999 Per Month</div>
+                            <div className="plans-card-header">₹999 Per Year</div>
                             <div className="plans-card-body">Unlimited Access <FontAwesomeIcon icon={faCheck} /></div>
                             <div className="plans-card-footer">30-day free trial <FontAwesomeIcon icon={faCheck} /></div>
                         </div>
