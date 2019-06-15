@@ -1,10 +1,11 @@
-import { SIGN_IN,SIGN_IN_ERROR,SIGN_IN_AUTO,SIGN_OUT,FETCH_PROFILE } from '../actions/types';
+import { SIGN_IN,SIGN_IN_ERROR,SIGN_IN_AUTO,SIGN_OUT,FETCH_PROFILE,FETCH_CURRENT_SUB } from '../actions/types';
 
 const INTIAL_STATE = {
     token : null,
     isSignedIn : false,
     email:null,
-    name:null
+    name:null,
+    current_sub:null,
 };
 
 export default (state=INTIAL_STATE,action) => {
@@ -18,7 +19,9 @@ export default (state=INTIAL_STATE,action) => {
         case FETCH_PROFILE:
             return {...state,email:action.payload.email,name:action.payload.name}
         case SIGN_OUT:
-            return { token:null,isSignedIn:false,email:null,name:null };
+            return { token:null,isSignedIn:false,email:null,name:null,current_sub:null };
+        case FETCH_CURRENT_SUB:
+            return { ...state,current_sub:action.payload }
         default:
             return state;
     };

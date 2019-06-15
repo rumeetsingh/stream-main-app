@@ -3,8 +3,9 @@ import {
     SIGN_IN_ERROR,
     SIGN_IN_AUTO,
     SIGN_OUT,
-    SEARCH_SHOWS,
     FETCH_PROFILE,
+    FETCH_CURRENT_SUB,
+    SEARCH_SHOWS,
 } from './types';
 import history from '../history';
 import basic from '../apis/basic';
@@ -17,9 +18,10 @@ export const signIn = (formValues) => async (dispatch) => {
         "email" : email,
         "password" : password
         });
-        dispatch({ type:SIGN_IN,payload:response.data.token });
-        dispatch(fetchProfile(response.data.token));
-        localStorage.setItem("foxedouVlL8S",response.data.token);
+        await dispatch({ type:SIGN_IN,payload:response.data.token });
+        await dispatch(fetchProfile(response.data.token));
+        await dispatch(fetchCurrentSub(response.data.token));
+        await localStorage.setItem("foxedouVlL8S",response.data.token);
         history.push('/');
     }catch(error){
         dispatch({ type:SIGN_IN_ERROR,payload:error });
@@ -41,7 +43,6 @@ export const fetchProfile = (token) => async (dispatch) => {
             }
         });
         dispatch({ type:FETCH_PROFILE,payload:response.data });
-        console.log(response.data);
     }catch(error){
         dispatch(signOut());
     };
@@ -49,7 +50,8 @@ export const fetchProfile = (token) => async (dispatch) => {
 
 export const signInAndfetchProfile = (token) => async (dispatch) => {
     await dispatch(signInAuto(token));
-    dispatch(fetchProfile(token));
+    await dispatch(fetchProfile(token));
+    dispatch(fetchCurrentSub(token));
 };
 
 export const signOut = () => (dispatch) => {
@@ -57,6 +59,17 @@ export const signOut = () => (dispatch) => {
     dispatch({ type:SIGN_OUT, });
     history.push('/');
 };
+
+export const fetchCurrentSub = (token) => async (dispatch) => {
+    const response = await basic.get('/memberships/subscribe/',{
+        headers : {
+            Authorization : `Token ${token}`
+        }
+    });
+    if(response.data.length===1){
+        dispatch({ type:FETCH_CURRENT_SUB,payload:response.data[0] })
+    }
+}
 
 export const searchShows = (value) => async (dispatch) => {
     const response = await basic.get(`./shows/?search=${value}`);

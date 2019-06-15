@@ -18,7 +18,7 @@ class Navbar extends React.Component {
         if(this.props.auth.isSignedIn){
             return (
                 <div className="col-md-3 text-center no-select">
-                    <span className="nav-item cursor-pointer gear"><FontAwesomeIcon icon={faCog} /></span>
+                    <Link to='/profile' className="nav-item cursor-pointer gear"><FontAwesomeIcon icon={faCog} /></Link>
                     <span onClick={this.signOutHandler} className="nav-item cursor-pointer">SignOut</span> 
                 </div>
             );
