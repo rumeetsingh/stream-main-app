@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css'
 import Search from './NavbarComponents/Search';
 
@@ -18,7 +18,7 @@ class Navbar extends React.Component {
         if(this.props.auth.isSignedIn){
             return (
                 <div className="col-md-3 text-center no-select">
-                    <Link to='/profile' className="nav-item cursor-pointer gear"><FontAwesomeIcon icon={faCog} /></Link>
+                    <Link to='/profile' className="nav-item cursor-pointer gear"><FontAwesomeIcon icon={faUser} /></Link>
                     <span onClick={this.signOutHandler} className="nav-item cursor-pointer">SignOut</span> 
                 </div>
             );

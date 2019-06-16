@@ -1,11 +1,9 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import basic from '../../apis/basic';
 import Spinner from './Spinner';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { signIn } from '../../actions';
 
 
 class RegisterSuccess extends React.Component{
@@ -25,18 +23,23 @@ class RegisterSuccess extends React.Component{
         };
     };
 
+    autoSignIn = () => {
+        this.props.signIn({email:this.props.formValues.email,password:this.props.formValues.password});
+    };
+
     render() {
         if(this.state.res){
-            return(
-                <div className="ca-card text-center">
-                    <div className="ca-card-title">Account Created Successfully</div>
-                    <div className="ca-card-body">
-                        Your account has been successfully created.
-                        <br />
-                        You can now  <Link to="/signin" className="ca-link">Sign in <FontAwesomeIcon icon={faCaretRight} /></Link>
-                    </div>
-                </div>
-            );
+            this.autoSignIn();
+            // return(
+            //     <div className="ca-card text-center">
+            //         <div className="ca-card-title">Account Created Successfully</div>
+            //         <div className="ca-card-body">
+            //             Your account has been successfully created.
+            //             <br />
+            //             You can now  <Link to="/signin" className="ca-link">Sign in <FontAwesomeIcon icon={faCaretRight} /></Link>
+            //         </div>
+            //     </div>
+            // );
         }
         return(
             <div className="ca-card text-center">
@@ -57,4 +60,4 @@ const mapStateToProps = (state) => {
 
 
 const RegisterSuccessWrapper = reduxForm({form:'createAccount',destroyOnUnmount: true})(RegisterSuccess);
-export default connect(mapStateToProps)(RegisterSuccessWrapper);
+export default connect(mapStateToProps,{ signIn })(RegisterSuccessWrapper);

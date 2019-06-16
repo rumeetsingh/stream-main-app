@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Foxedo from './Foxedo';
 import './CreateAccount.css';
 import CreateAccountForm from './CreateAccountComponents/CreateAccountForm';
 import RegisterSuccess from './CreateAccountComponents/RegisterSuccess';
@@ -28,16 +28,9 @@ class CreateAccount extends React.Component {
             return <div>Invalid Request</div>;
         };
         return (
-            <div className="container-fluid text-center">
-                <div className="row justify-content-center">
-                    <div className="col-md-7 col-lg-4">
-                        <Link to="/">
-                            <img className="ca-logo" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1560261432/foxedo-nav-logo-with-padding_l8lps0.png" alt="Foxedo" />
-                        </Link>
-                        {this.renderPage()}
-                    </div>
-                </div>
-            </div>
+            <Foxedo>
+                {this.renderPage()}
+            </Foxedo>
         );
     };
 
