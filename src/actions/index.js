@@ -8,6 +8,7 @@ import {
     FETCH_PLANS,
     FETCH_TRAIL,
     FETCH_CARDS,
+    SELECT_PLAN,
     SEARCH_SHOWS,
 } from './types';
 import history from '../history';
@@ -99,6 +100,13 @@ export const fetchTrial = (token) => async dispatch => {
         }
     });
     dispatch({type:FETCH_TRAIL,payload:response.data.message});
+};
+
+export const selectPlan = (id) => {
+    return {
+        type : SELECT_PLAN,
+        payload : id
+    };
 };
 
 export const searchShows = (value) => async (dispatch) => {

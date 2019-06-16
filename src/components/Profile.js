@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { fetchPlans,fetchCards,signInAndfetchProfile,fetchTrial } from '../actions';
 import Navbar from './Navbar';
+import SelectPlan from './ProfileComponents/SelectPlan';
 import './Profile.css';
 
 
@@ -16,6 +17,12 @@ class Profile extends React.Component {
         };
     };
 
+    renderComponent = () => {
+        if(this.props.acc.cards.length===0){
+            return <SelectPlan />;
+        };
+    };
+
     render() {
         if(!this.props.auth.isSignedIn){
             return <div>Invalid Request</div>
@@ -24,9 +31,17 @@ class Profile extends React.Component {
             <div className="container-fluid">
                 <Navbar />
                 <div className="main-page">
-                    <div className="row justify-content-center text-center">
-                        <div className="col-md-6">
-                            <div className="p-name">Hello, {this.props.auth.name}<br /><small>{this.props.auth.email}</small></div>
+                    <div className="row justify-content-center">
+                        <div className="col-md-7">
+                            <div className="p-title">
+                                Account Details
+                            </div>
+                            <div className="p-content">
+                                <span className="p-name">Name:</span> {this.props.auth.name}
+                                <br />
+                                <span className="p-name">Email:</span> {this.props.auth.email}
+                            </div>
+                            {this.renderComponent()}
                         </div>
                     </div>
                 </div>
@@ -38,7 +53,8 @@ class Profile extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth : state.auth
+        auth : state.auth,
+        acc : state.accountDetails,
     };
 };
 

@@ -7,4 +7,5 @@ export const FETCH_CURRENT_SUB = "FETCH_CURRENT_SUB";
 export const FETCH_PLANS = "FETCH_PLANS";
 export const FETCH_CARDS = "FETCH_CARDS";
 export const FETCH_TRAIL = "FETCH_TRIAL";
+export const SELECT_PLAN = "SELECT_PLAN";
 export const SEARCH_SHOWS = "SEARCH_SHOWS"; 
