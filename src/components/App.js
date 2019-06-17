@@ -5,6 +5,7 @@ import Home from './Home';
 import CreateAccount from './CreateAccount';
 import SignIn from './SignIn';
 import Profile from './Profile';
+import AddCard from './ProfileComponents/AddCard';
 import Test from './CreateAccountComponents/Test';
 import history from '../history';
 import { signInAndfetchProfile } from '../actions';
@@ -25,6 +26,7 @@ class App extends React.Component {
                 <Route path='/createaccount' exact component={CreateAccount} />
                 <Route path='/signin' exact component={SignIn} />
                 <Route path='/profile' exact component={Profile} />
+                <Route path='/addcard' exact component={AddCard} />
                 <Route path='/test' exact component={Test} />
             </Router>
         );

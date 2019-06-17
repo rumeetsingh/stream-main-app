@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { fetchPlans,fetchCards,signInAndfetchProfile,fetchTrial } from '../actions';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import SelectPlan from './ProfileComponents/SelectPlan';
 import './Profile.css';
 
@@ -18,8 +19,10 @@ class Profile extends React.Component {
     };
 
     renderComponent = () => {
-        if(this.props.acc.cards.length===0){
-            return <SelectPlan />;
+        if(this.props.acc.cards!==null&&this.props.acc.trial!==null){
+            if(this.props.acc.cards.length===0&&this.props.acc.trial===false){
+                return <SelectPlan />;
+            };
         };
     };
 

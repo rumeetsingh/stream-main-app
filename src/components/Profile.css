@@ -16,10 +16,6 @@
     border-bottom-left-radius: 10px;
 }
 
-.p-card-name-active{
-    background-color: #ff7200;
-}
-
 .p-plan-card-ua{
     padding: 20px;
     background-color: #f2f2f2;
@@ -32,6 +28,11 @@
     border-bottom-right-radius: 10px;
 }
 
+.p-card-active{
+    background-color: #ff7200;
+    color: white;
+}
+
 .p-plan-row{
     margin-bottom: 10px;
     transition: transform .2s ease-in-out;
@@ -39,4 +40,68 @@
 
 .p-plan-row:hover{
     transform: scale(1.01);
+}
+
+.p-btn{
+    padding:10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    width: 50%;
+    background-color: #ff7200;
+    color: white;
+    transition: 0.3s;
+}
+
+.p-btn:hover{
+    background-color: #ff7b11;
+}
+
+.p-btn:active{
+    background-color: #e26500;
+}
+
+.p-btn:focus{
+    outline: none;
+}
+
+.p-btn-disabled{
+    padding:10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    width: 50%;
+    background-color: #f2f2f2;
+}
+
+.p-btn-disabled:focus{
+    outline: none;
+}
+
+.card-input-container{
+    margin-top: 15px;
+}
+
+.card-number-input{
+    width: 100%;
+    padding: 10px 10px 8px 10px;
+    font-size: 15px;
+    border: 1px solid #ff7200;
+    border-radius: 10px;
+}
+
+.card-number-input:focus{
+    outline: none;
+}
+
+.ig-left{
+    padding-right:5px;
+}
+
+.ig-right{
+    padding-left: 5px;
 }

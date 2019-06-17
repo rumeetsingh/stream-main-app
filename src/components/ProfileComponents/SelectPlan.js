@@ -1,11 +1,14 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { selectPlan } from '../../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 class SelectPlan extends React.Component {
+
+    state = { pActive : null };
 
     selectMonthlyPlan = () => {
         if(this.props.trial===true){
@@ -13,6 +16,7 @@ class SelectPlan extends React.Component {
         }else if(this.props.trial===false){
             this.props.selectPlan( _.find(this.props.plans,{ payment:"Monthly",trial:true }).id );
         };
+        this.setState({pActive:1})
     };
 
     selectAnnualPlan = () => {
@@ -21,28 +25,56 @@ class SelectPlan extends React.Component {
         }else if(this.props.trial===false){
             this.props.selectPlan( _.find(this.props.plans,{ payment:"Annual",trial:true }).id );
         };
+        this.setState({pActive:2})
+    };
+
+    handleMonthlyClass = () => {
+        if(this.state.pActive===1){
+            return "p-card-active"
+        }else{
+            return null;
+        };
+    };
+
+    handleAnnualClass = () => {
+        if(this.state.pActive===2){
+            return "p-card-active"
+        }else{
+            return null;
+        };
+    };
+
+    renderNextButton = () => {
+        if(this.props.acc.cards.length===0){
+            if(this.props.acc.selectedPlan!==null&&this.state.pActive!==null){
+                return <Link to="/addcard"><button className="p-btn cursor-pointer">Next</button></Link>;
+            }else{
+                return <button className="p-btn-disabled">Next</button>;
+            };
+        };
     };
 
     render() {
         return (
-            <div>
-                <div className="p-title">
+            <div className="text-center">
+                <div className="p-title text-start">
                     Choose a plan
                 </div>
                 <div onClick={this.selectMonthlyPlan} className="no-select cursor-pointer">
                     <div className="row text-center p-plan-row">
-                        <div className="col-md-4 p-plan-card-name p-card-name-active">₹129 per month</div>
-                        <div className="col-md-4 p-plan-card-ua">Unlimited Access <FontAwesomeIcon icon={faCheck} /></div>
-                        <div className="col-md-4 p-plan-card-t">30-day free trial <FontAwesomeIcon icon={faCheck} /></div>
+                        <div className={"col-md-4 p-plan-card-name " + this.handleMonthlyClass()}>₹129 per month</div>
+                        <div className={"col-md-4 p-plan-card-ua " + this.handleMonthlyClass()}>Unlimited Access <FontAwesomeIcon icon={faCheck} /></div>
+                        <div className={"col-md-4 p-plan-card-t " + this.handleMonthlyClass()}>30-day free trial <FontAwesomeIcon icon={faCheck} /></div>
                     </div>
                 </div>
                 <div onClick={this.selectAnnualPlan} className="no-select cursor-pointer">
                     <div className="row text-center p-plan-row">
-                        <div className="col-md-4 p-plan-card-name">₹129 per month</div>
-                        <div className="col-md-4 p-plan-card-ua">Unlimited Access <FontAwesomeIcon icon={faCheck} /></div>
-                        <div className="col-md-4 p-plan-card-t">30-day free trial <FontAwesomeIcon icon={faCheck} /></div>
+                        <div className={"col-md-4 p-plan-card-name " + this.handleAnnualClass()}>₹999 per year</div>
+                        <div className={"col-md-4 p-plan-card-ua " + this.handleAnnualClass()}>Unlimited Access <FontAwesomeIcon icon={faCheck} /></div>
+                        <div className={"col-md-4 p-plan-card-t " + this.handleAnnualClass()}>30-day free trial <FontAwesomeIcon icon={faCheck} /></div>
                     </div>
                 </div>
+                {this.renderNextButton()}
             </div>
         );
     };
@@ -51,7 +83,8 @@ class SelectPlan extends React.Component {
 const mapStateToProps = (state) => {
     return {
         plans : state.plans,
-        trial : state.accountDetails.trial
+        trial : state.accountDetails.trial,
+        acc : state.accountDetails,
     };
 };
 

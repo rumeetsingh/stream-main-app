@@ -1,7 +1,7 @@
 import { FETCH_CARDS,FETCH_TRAIL, SELECT_PLAN } from '../actions/types';
 
 const INITIAL_STATE = {
-    cards : [],
+    cards : null,
     trial : null,
     selectedPlan : null
 }

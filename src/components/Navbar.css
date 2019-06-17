@@ -11,7 +11,16 @@
 }
 
 ::placeholder{
-    color: white;
+    color: #e5e5e5;
+    opacity: 1; /* Firefox */
+}
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #e5e5e5;
+}
+  
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #e5e5e5;
 }
 
 .search-field{
