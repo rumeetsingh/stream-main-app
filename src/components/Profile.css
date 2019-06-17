@@ -4,6 +4,12 @@
     font-size: 25px;
 }
 
+.p-plan-title{
+    margin-top: 40px;
+    margin-bottom: 13px;
+    font-size: 20px;
+}
+
 .p-name{
     color: #ff7200;
 }

@@ -45,12 +45,14 @@ class SelectPlan extends React.Component {
     };
 
     renderNextButton = () => {
-        if(this.props.acc.cards.length===0){
-            if(this.props.acc.selectedPlan!==null&&this.state.pActive!==null){
+        if(this.props.acc.selectedPlan!==null&&this.state.pActive!==null){
+            if(this.props.acc.cards.length===0){
                 return <Link to="/addcard"><button className="p-btn cursor-pointer">Next</button></Link>;
             }else{
-                return <button className="p-btn-disabled">Next</button>;
-            };
+                return <Link to="/substatus"><button className="p-btn cursor-pointer">Next</button></Link>;
+            }
+        }else{
+            return <button className="p-btn-disabled">Next</button>;
         };
     };
 

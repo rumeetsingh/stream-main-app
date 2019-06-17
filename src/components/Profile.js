@@ -1,8 +1,8 @@
 import React from 'react';
+import _ from 'lodash';
 import {connect} from 'react-redux';
 import { fetchPlans,fetchCards,signInAndfetchProfile,fetchTrial } from '../actions';
 import Navbar from './Navbar';
-import Footer from './Footer';
 import SelectPlan from './ProfileComponents/SelectPlan';
 import './Profile.css';
 
@@ -19,11 +19,32 @@ class Profile extends React.Component {
     };
 
     renderComponent = () => {
-        if(this.props.acc.cards!==null&&this.props.acc.trial!==null){
-            if(this.props.acc.cards.length===0&&this.props.acc.trial===false){
+        if(this.props.acc.cards!==null){
+            if(this.props.auth.current_sub===null){
                 return <SelectPlan />;
             };
         };
+    };
+
+    getPlanName = (id) => {
+        if(this.props.plans.length!==0){
+            const planName = _.find(this.props.plans,{ id:id }).name
+            return planName;
+        }
+        return null;
+    }
+
+    renderCurrentPlan = () => {
+        if(this.props.auth.current_sub!==null){
+            return (
+                <div>
+                    <div className="p-plan-title">
+                        Current Plan: {_.trimEnd(this.getPlanName(this.props.auth.current_sub.plan)," WT")}
+                    </div>
+                </div>
+            )
+        };
+        return null;
     };
 
     render() {
@@ -44,6 +65,7 @@ class Profile extends React.Component {
                                 <br />
                                 <span className="p-name">Email:</span> {this.props.auth.email}
                             </div>
+                            {this.renderCurrentPlan()}
                             {this.renderComponent()}
                         </div>
                     </div>
@@ -58,6 +80,7 @@ const mapStateToProps = (state) => {
     return {
         auth : state.auth,
         acc : state.accountDetails,
+        plans : state.plans,
     };
 };
 
