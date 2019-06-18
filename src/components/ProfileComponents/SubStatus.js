@@ -9,29 +9,31 @@ import Spinner from '../CreateAccountComponents/Spinner';
 
 class SubStatus extends React.Component {
 
-    state = { res:null,err:null };
+    state = { success:null };
 
     componentDidMount = async () => {
         if(this.props.acc.selectedPlan!==null){
             await this.props.fetchCards(this.props.auth.token);
-            await this.props.fetchCurrentSub(this.props.auth.token);
 
             const headers = { "Authorization" : `Token ${this.props.auth.token}`,"Content-Type" : 'application/json' }
             try{
-                const response = await basic.post('/memberships/subscribe/',{
+                await basic.post('/memberships/subscribe/',{
                     "plan" : this.props.acc.selectedPlan
                 },{ headers})
-                this.setState({res:response});
+                await this.props.fetchCurrentSub(this.props.auth.token);
+                this.setState({success:true});
             }catch(errors){
-                this.setState({err:errors});
+                this.setState({success:false});
             }
 
         };
     };
 
     renderContent = () => {
-        if(this.state.res!==null){
+        if(this.state.success===true){
             return <Redirect to="/profile" />;
+        }else if(this.state.success===false){
+            return <div>An Error Occured</div>;
         }else{
             return <Spinner />;
         };

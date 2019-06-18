@@ -26,7 +26,7 @@ export const signIn = (formValues) => async (dispatch,getState) => {
         await localStorage.setItem("foxedouVlL8S",response.data.token);
         await dispatch(fetchProfile(response.data.token));
         await dispatch(fetchCurrentSub(response.data.token));
-        if(getState().auth.current_sub===null){
+        if(getState().auth.current_sub.length===0){
             history.push('/profile');
         }else{
             history.push('/')
@@ -74,9 +74,7 @@ export const fetchCurrentSub = (token) => async (dispatch) => {
             Authorization : `Token ${token}`
         }
     });
-    if(response.data.length===1){
-        dispatch({ type:FETCH_CURRENT_SUB,payload:response.data[0] })
-    };
+    dispatch({ type:FETCH_CURRENT_SUB,payload:response.data })
 };
 
 export const fetchPlans = () => async dispatch => {
