@@ -7,6 +7,7 @@ import SignIn from './SignIn';
 import Profile from './Profile';
 import SubStatus from './ProfileComponents/SubStatus';
 import AddCard from './ProfileComponents/AddCard';
+import CancelSubscription from './ProfileComponents/CancelSubscription';
 import Test from './CreateAccountComponents/Test';
 import history from '../history';
 import { signInAndfetchProfile } from '../actions';
@@ -29,6 +30,7 @@ class App extends React.Component {
                 <Route path='/profile' exact component={Profile} />
                 <Route path='/profile/addcard' exact component={AddCard} />
                 <Route path='/profile/substatus' exact component={SubStatus} />
+                <Route path='/profile/cancelsubscription' exact component={CancelSubscription} />
                 <Route path='/test' exact component={Test} />
             </Router>
         );

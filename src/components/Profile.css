@@ -111,3 +111,12 @@
 .ig-right{
     padding-left: 5px;
 }
+
+.p-link{
+    text-decoration: none;
+    color: #4286f4;
+}
+
+.p-link:hover{
+    text-decoration: underline;
+}

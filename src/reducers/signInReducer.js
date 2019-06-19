@@ -5,7 +5,7 @@ const INTIAL_STATE = {
     isSignedIn : false,
     email:null,
     name:null,
-    current_sub:null,
+    current_sub: { main:null,stripe:null } ,
 };
 
 export default (state=INTIAL_STATE,action) => {
@@ -21,7 +21,7 @@ export default (state=INTIAL_STATE,action) => {
         case SIGN_OUT:
             return { token:null,isSignedIn:false,email:null,name:null,current_sub:null };
         case FETCH_CURRENT_SUB:
-            return { ...state,current_sub:action.payload }
+            return { ...state,current_sub:{ main:action.payload[0],stripe:action.payload[1] } }
         default:
             return state;
     };

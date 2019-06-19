@@ -42,9 +42,6 @@ class SignIn extends React.Component {
     };
 
     render() {
-        if(this.props.auth.isSignedIn){
-            return <div />;
-        };
         return (
             <Foxedo>
                 <div className="ca-card text-center">

@@ -24,9 +24,6 @@ class CreateAccount extends React.Component {
     };
 
     render() {
-        if(this.props.auth){
-            return <div>Invalid Request</div>;
-        };
         return (
             <Foxedo>
                 {this.renderPage()}

@@ -26,7 +26,7 @@ export const signIn = (formValues) => async (dispatch,getState) => {
         await localStorage.setItem("foxedouVlL8S",response.data.token);
         await dispatch(fetchProfile(response.data.token));
         await dispatch(fetchCurrentSub(response.data.token));
-        if(getState().auth.current_sub.length===0){
+        if(getState().auth.current_sub.stripe.type==="NewUser"){
             history.push('/profile');
         }else{
             history.push('/')
@@ -69,12 +69,17 @@ export const signOut = () => (dispatch) => {
 };
 
 export const fetchCurrentSub = (token) => async (dispatch) => {
-    const response = await basic.get('/memberships/subscribe/',{
+    const response1 = await basic.get('/memberships/subscribe/',{
         headers : {
             Authorization : `Token ${token}`
         }
     });
-    dispatch({ type:FETCH_CURRENT_SUB,payload:response.data })
+    const response2 = await basic.get('/memberships/subscribe/stripe/',{
+        headers : {
+            Authorization : `Token ${token}`
+        }
+    })
+    dispatch({ type:FETCH_CURRENT_SUB,payload:[response1.data,response2.data] })
 };
 
 export const fetchPlans = () => async dispatch => {

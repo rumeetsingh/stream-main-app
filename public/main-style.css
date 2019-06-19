@@ -3,6 +3,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Oxygen:700&display=swap');
 
+
+@media only screen and (max-width: 768px){
+    .text-md-end{
+        text-align: start !important;
+    }
+}
+
+
 *{
     padding: 0px;
     margin: 0px;
@@ -11,6 +19,14 @@
 body{
     font-family: 'Open Sans', sans-serif;
 }
+
+.alert{position:relative;padding:.75rem 1.25rem;margin-bottom:1rem;border:1px solid transparent;border-radius:10px}
+.alert-danger{color:#721c24;background-color:#f8d7da;border-color:#f5c6cb}
+.alert-danger .alert-link{color:#491217}
+.alert-warning{color:#856404;background-color:#fff3cd;border-color:#ffeeba}
+.alert-warning .alert-link{color:#533f03}
+.text-secondary{color:#6c757d!important}a.text-secondary:focus,a.text-secondary:hover{color:#494f54!important}
+@-webkit-keyframes spinner-border{to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spinner-border{to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.spinner-border{display:inline-block;width:2rem;height:2rem;vertical-align:text-bottom;border:.25em solid currentColor;border-right-color:transparent;border-radius:50%;-webkit-animation:spinner-border .75s linear infinite;animation:spinner-border .75s linear infinite}.spinner-border-sm{width:1rem;height:1rem;border-width:.2em}
 
 .no-select{
     -webkit-touch-callout: none; /* iOS Safari */
@@ -35,6 +51,10 @@ body{
 }
 
 .text-end{
+    text-align: end;
+}
+
+.text-md-end{
     text-align: end;
 }
 

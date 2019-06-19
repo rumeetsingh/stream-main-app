@@ -1,10 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCcVisa,faCcMastercard } from '@fortawesome/free-brands-svg-icons'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { fetchPlans,fetchCards,signInAndfetchProfile,fetchTrial } from '../actions';
+import SpinnerBorder from './ProfileComponents/SpinnerBorder';
 import Navbar from './Navbar';
 import SelectPlan from './ProfileComponents/SelectPlan';
 import './Profile.css';
@@ -53,33 +55,52 @@ class Profile extends React.Component {
     };
 
     renderSubAndBilling = () => {
-        if(this.props.auth.current_sub!==null){
-            if(this.props.auth.current_sub.length===1){
+        if(this.props.auth.current_sub.main!==null){
+            if(this.props.auth.current_sub.main.length===1){
                 return (
                     <div>
                         <div className="p-title">
                             Subscription and Billing
                         </div>
                         <div className="p-content">
-                            <span className="p-name">Current Plan:</span> {_.trimEnd(this.getPlanName(this.props.auth.current_sub[0].plan)," WT")}
-                            <br />
-                            <span className="p-name">Next Billing Date:</span> {_.split(this.props.auth.current_sub[0].current_period_end," ",2)[0]}
-                            <br />
-                            {this.renderPaymentCard()}
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <span className="p-name">Current Plan:</span> {_.trimEnd(this.getPlanName(this.props.auth.current_sub.main[0].plan)," WT")}
+                                    <br />
+                                    <span className="p-name">Next Billing Date:</span> {_.split(this.props.auth.current_sub.stripe.current_period_end," ",2)[0]}
+                                    <br />
+                                    {this.renderPaymentCard()}
+                                </div>
+                                <div className="col-md-6 text-md-end">
+                                    <Link className="p-link" to="/profile/cancelsubscription">Cancel Subscription</Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 );
-            };
-        };
-        return null;
+            }else if(this.props.auth.current_sub.stripe.type==="cancelled"){
+                return (
+                    <div>
+                        <div className="p-title">
+                            Subscription and Billing
+                        </div>
+                        <div className="alert alert-warning">
+                            You have cancelled your subscription.<br />
+                            But you can still enjoy all the content till {_.split(this.props.auth.current_sub.stripe.current_period_end," ",2)[0]}.
+                        </div>
+                        {this.renderPaymentCard()}
+                    </div>
+                );
+            }
+        }else{ return <SpinnerBorder />; };
     };
 
     renderSelectPlan = () => {
-        if(this.props.auth.current_sub!==null){
-            if(this.props.auth.current_sub.length===0){
+        if(this.props.auth.current_sub.stripe!==null){
+            if(this.props.auth.current_sub.stripe.type==="NewUser"){
                 return <SelectPlan />;
             };
-        };
+        }else{ return <SpinnerBorder /> };
     };
 
     render() {

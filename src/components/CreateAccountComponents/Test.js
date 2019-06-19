@@ -16,13 +16,8 @@ class Spinner extends React.Component {
                         <Link to="/">
                             <img className="ca-logo" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1560261432/foxedo-nav-logo-with-padding_l8lps0.png" alt="Foxedo" />
                         </Link>
-                        <div className="ca-card text-center">
-                            <div className="ca-card-title">Account Created Successfully</div>
-                            <div className="ca-card-body">
-                                Your account has been successfully created.
-                                <br />
-                                You can now  <Link to="/" className="ca-link">Sign in <FontAwesomeIcon icon={faCaretRight} /></Link>
-                            </div>
+                        <div className="spinner-container">
+                            <div className="spinner"></div>
                         </div>
                     </div>
                 </div>
