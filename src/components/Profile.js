@@ -45,11 +45,22 @@ class Profile extends React.Component {
     renderPaymentCard = () => {
         if(this.props.acc.cards!==null){
             if(this.props.acc.cards.length===1){
-                return (
-                    <div>
-                        <span className="p-name">Payment Card: </span>{this.renderCardCompany()}{" **** **** **** " + this.props.acc.cards[0].number_hidden.slice(1,)}
-                    </div>
-                );
+                if(this.props.auth.current_sub.main.length===1){
+                    return (
+                        <div>
+                            <span className="p-name">Payment Card: </span>{this.renderCardCompany()}{" **** **** **** " + this.props.acc.cards[0].number_hidden.slice(1,)}
+                        </div>
+                    );
+                }else if(this.props.auth.current_sub.stripe.type==="cancelled"){
+                    return (
+                        <div className="row">
+                            <div className="col-md-6"><span className="p-name">Payment Card: </span>{this.renderCardCompany()}{" **** **** **** " + this.props.acc.cards[0].number_hidden.slice(1,)}</div>
+                            <div className="col-md-6 text-md-end">
+                                <Link className="p-link" to="/profile/removecard">Remove Card</Link>
+                            </div>
+                        </div>
+                    );
+                };
             };
         };
     };
