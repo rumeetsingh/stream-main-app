@@ -44,11 +44,15 @@ class RemoveCard extends React.Component {
     }
 
     render() {
-        return (
-            <Foxedo>
-                {this.renderComponent()}
-            </Foxedo>
-        )
+        if(this.props.auth.isSignedIn){
+            return (
+                <Foxedo>
+                    {this.renderComponent()}
+                </Foxedo>
+            )
+        }else{
+            return <Redirect to="/profile" />
+        };
     };
 }
 
