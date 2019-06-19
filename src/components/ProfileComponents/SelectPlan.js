@@ -57,28 +57,52 @@ class SelectPlan extends React.Component {
     };
 
     render() {
-        return (
-            <div className="text-center">
-                <div className="p-title text-start">
-                    Choose a plan
-                </div>
-                <div onClick={this.selectMonthlyPlan} className="no-select cursor-pointer">
-                    <div className="row text-center p-plan-row">
-                        <div className={"col-md-4 p-plan-card-name " + this.handleMonthlyClass()}>₹129 per month</div>
-                        <div className={"col-md-4 p-plan-card-ua " + this.handleMonthlyClass()}>Unlimited Access <FontAwesomeIcon icon={faCheck} /></div>
-                        <div className={"col-md-4 p-plan-card-t " + this.handleMonthlyClass()}>30-day free trial <FontAwesomeIcon icon={faCheck} /></div>
+        if(this.props.trial===false){
+            return (
+                <div className="text-center">
+                    <div className="p-title text-start">
+                        Choose a plan
                     </div>
-                </div>
-                <div onClick={this.selectAnnualPlan} className="no-select cursor-pointer">
-                    <div className="row text-center p-plan-row">
-                        <div className={"col-md-4 p-plan-card-name " + this.handleAnnualClass()}>₹999 per year</div>
-                        <div className={"col-md-4 p-plan-card-ua " + this.handleAnnualClass()}>Unlimited Access <FontAwesomeIcon icon={faCheck} /></div>
-                        <div className={"col-md-4 p-plan-card-t " + this.handleAnnualClass()}>30-day free trial <FontAwesomeIcon icon={faCheck} /></div>
+                    <div onClick={this.selectMonthlyPlan} className="no-select cursor-pointer">
+                        <div className="row text-center p-plan-row">
+                            <div className={"col-md-4 p-plan-card-name " + this.handleMonthlyClass()}>₹129 per month</div>
+                            <div className={"col-md-4 p-plan-card-ua " + this.handleMonthlyClass()}>Unlimited Access <FontAwesomeIcon icon={faCheck} /></div>
+                            <div className={"col-md-4 p-plan-card-t " + this.handleMonthlyClass()}>30-day free trial <FontAwesomeIcon icon={faCheck} /></div>
+                        </div>
                     </div>
+                    <div onClick={this.selectAnnualPlan} className="no-select cursor-pointer">
+                        <div className="row text-center p-plan-row">
+                            <div className={"col-md-4 p-plan-card-name " + this.handleAnnualClass()}>₹999 per year</div>
+                            <div className={"col-md-4 p-plan-card-ua " + this.handleAnnualClass()}>Unlimited Access <FontAwesomeIcon icon={faCheck} /></div>
+                            <div className={"col-md-4 p-plan-card-t " + this.handleAnnualClass()}>30-day free trial <FontAwesomeIcon icon={faCheck} /></div>
+                        </div>
+                    </div>
+                    {this.renderNextButton()}
                 </div>
-                {this.renderNextButton()}
-            </div>
-        );
+            );
+        }else if(this.props.trial===true){
+            return (
+                <div className="text-center">
+                    <div className="p-title text-start">
+                        Choose a plan
+                    </div>
+                    <div onClick={this.selectMonthlyPlan} className="no-select cursor-pointer">
+                        <div className="row text-center p-plan-row">
+                            <div className={"col-md-6 p-plan-card-name " + this.handleMonthlyClass()}>₹129 per month</div>
+                            <div className={"col-md-6 p-plan-card-ua " + this.handleMonthlyClass()} style={{borderTopRightRadius:'10px',borderBottomRightRadius:'10px'}}>Unlimited Access <FontAwesomeIcon icon={faCheck} /></div>
+                        </div>
+                    </div>
+                    <div onClick={this.selectAnnualPlan} className="no-select cursor-pointer">
+                        <div className="row text-center p-plan-row">
+                            <div className={"col-md-6 p-plan-card-name " + this.handleAnnualClass()}>₹999 per year</div>
+                            <div className={"col-md-6 p-plan-card-ua " + this.handleAnnualClass()} style={{borderTopRightRadius:'10px',borderBottomRightRadius:'10px'}}>Unlimited Access <FontAwesomeIcon icon={faCheck} /></div>
+                        </div>
+                    </div>
+                    {this.renderNextButton()}
+                </div>
+            );
+        }
+        else return null;
     };
 };
 

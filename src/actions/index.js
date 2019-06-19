@@ -9,6 +9,7 @@ import {
     FETCH_TRAIL,
     FETCH_CARDS,
     SELECT_PLAN,
+    FETCH_TRANSACTIONS,
     SEARCH_SHOWS,
 } from './types';
 import history from '../history';
@@ -103,6 +104,11 @@ export const fetchTrial = (token) => async dispatch => {
         }
     });
     dispatch({type:FETCH_TRAIL,payload:response.data.message});
+};
+
+export const fetchTransactions = (token) => async dispatch => {
+    const response = await basic.get('/memberships/invoice/',{ headers : { Authorization : `Token ${token}` } });
+    dispatch({type:FETCH_TRANSACTIONS,payload:response.data});
 };
 
 export const selectPlan = (id) => {

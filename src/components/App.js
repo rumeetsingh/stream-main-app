@@ -10,6 +10,7 @@ import AddCard from './ProfileComponents/AddCard';
 import CancelSubscription from './ProfileComponents/CancelSubscription';
 import RemoveCard from './ProfileComponents/RemoveCard';
 import Test from './CreateAccountComponents/Test';
+import ViewTransactions from './ProfileComponents/ViewTransactions';
 import history from '../history';
 import { signInAndfetchProfile } from '../actions';
 
@@ -33,6 +34,7 @@ class App extends React.Component {
                 <Route path='/profile/substatus' exact component={SubStatus} />
                 <Route path='/profile/cancelsubscription' exact component={CancelSubscription} />
                 <Route path='/profile/removecard' exact component={RemoveCard} />
+                <Route path='/profile/transactions' exact component={ViewTransactions} />
                 <Route path='/test' exact component={Test} />
             </Router>
         );

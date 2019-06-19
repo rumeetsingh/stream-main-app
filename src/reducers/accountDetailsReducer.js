@@ -1,10 +1,11 @@
-import { FETCH_CARDS,FETCH_TRAIL, SELECT_PLAN } from '../actions/types';
+import { FETCH_CARDS,FETCH_TRAIL, SELECT_PLAN, FETCH_TRANSACTIONS } from '../actions/types';
 
 const INITIAL_STATE = {
     cards : null,
     trial : null,
-    selectedPlan : null
-}
+    selectedPlan : null,
+    transactions : null,
+};
 
 export default (state=INITIAL_STATE,action) => {
     switch(action.type){
@@ -14,6 +15,8 @@ export default (state=INITIAL_STATE,action) => {
             return { ...state,trial:action.payload };
         case SELECT_PLAN:
             return { ...state,selectedPlan:action.payload };
+        case FETCH_TRANSACTIONS:
+            return { ...state,transactions:action.payload };
         default:
             return state;
     };

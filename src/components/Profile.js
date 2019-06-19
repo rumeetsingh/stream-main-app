@@ -42,46 +42,72 @@ class Profile extends React.Component {
         };
     };
 
+    renderCancelledSub = () => {
+        if(this.props.auth.current_sub.stripe.type==="cancelled"){
+            return (
+                <div className="col-md-12">
+                   <div className="alert alert-warning">
+                        You have cancelled your subscription.<br />
+                        But you can still enjoy all the content till {_.split(this.props.auth.current_sub.stripe.current_period_end," ",2)[0]}.
+                    </div> 
+                </div>
+            );
+        };
+    };
+
+    renderCurrentPlan = () => {
+        if(this.props.auth.current_sub.stripe.type==="active"){
+            return (
+                <div>
+                    <span className="p-name">Current Plan:</span> {_.trimEnd(this.getPlanName(this.props.auth.current_sub.main[0].plan)," WT")}
+                </div>
+            );
+        };
+    };
+
+    renderBillingDate = () => {
+        if(this.props.auth.current_sub.stripe.type==="active"){
+            return (
+                <div>
+                    <span className="p-name">Next Billing Date:</span> {_.split(this.props.auth.current_sub.stripe.current_period_end," ",2)[0]}
+                </div>
+            );
+        };
+    };
+
     renderPaymentCard = () => {
-        if(this.props.acc.cards!==null){
-            if(this.props.acc.cards.length===1){
-                if(this.props.auth.current_sub.main.length===1){
-                    return (
-                        <div>
-                            <span className="p-name">Payment Card: </span>{this.renderCardCompany()}{" **** **** **** " + this.props.acc.cards[0].number_hidden.slice(1,)}
-                        </div>
-                    );
-                }else if(this.props.auth.current_sub.stripe.type==="cancelled"){
-                    return (
-                        <div className="row">
-                            <div className="col-md-6"><span className="p-name">Payment Card: </span>{this.renderCardCompany()}{" **** **** **** " + this.props.acc.cards[0].number_hidden.slice(1,)}</div>
-                            <div className="col-md-6 text-md-end">
-                                <Link className="p-link" to="/profile/removecard">Remove Card</Link>
-                            </div>
-                        </div>
-                    );
-                }else if(this.props.auth.current_sub.stripe.type==="NewUser"){
-                    return (
-                        <div>
-                            <div className="p-title">
-                                Subscription and Billing
-                            </div>
-                            <div className="row">
-                                <div className="col-md-6"><span className="p-name">Payment Card: </span>{this.renderCardCompany()}{" **** **** **** " + this.props.acc.cards[0].number_hidden.slice(1,)}</div>
-                                <div className="col-md-6 text-md-end">
-                                    <Link className="p-link" to="/profile/removecard">Remove Card</Link>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                };
-            };
+        if(this.props.acc.cards.length===1){
+            return (
+                <div>
+                    <span className="p-name">Payment Card: </span>{this.renderCardCompany()}{" **** **** **** " + this.props.acc.cards[0].number_hidden.slice(1,)}
+                </div>
+            );
+        };
+    };
+
+    renderCancelSubLink = () => {
+        if(this.props.auth.current_sub.stripe.type==="active"){
+            return <div><Link className="p-link" to="/profile/cancelsubscription">Cancel Subscription</Link></div>;
+        };
+    };
+
+    renderRemoveCardLink = () => {
+        if(this.props.auth.current_sub.stripe.type!=="active"&&this.props.acc.cards.length===1){
+            return <div><Link className="p-link" to="/profile/removecard">Remove Card</Link></div>;
+        };
+    };
+
+    renderTransactionLink = () => {
+        if(this.props.acc.trial===true){
+            return <div><Link className="p-link" to="/profile/transactions">View Transactions</Link></div>;
         };
     };
 
     renderSubAndBilling = () => {
-        if(this.props.auth.current_sub.main!==null){
-            if(this.props.auth.current_sub.main.length===1){
+        if(this.props.auth.current_sub.main!==null&&this.props.acc.cards!==null&&this.props.acc.trial!==null){
+            if(this.props.acc.trial===false){
+                return null;
+            }else{
                 return (
                     <div>
                         <div className="p-title">
@@ -89,35 +115,21 @@ class Profile extends React.Component {
                         </div>
                         <div className="p-content">
                             <div className="row">
+                                {this.renderCancelledSub()}
                                 <div className="col-md-6">
-                                    <span className="p-name">Current Plan:</span> {_.trimEnd(this.getPlanName(this.props.auth.current_sub.main[0].plan)," WT")}
-                                    <br />
-                                    <span className="p-name">Next Billing Date:</span> {_.split(this.props.auth.current_sub.stripe.current_period_end," ",2)[0]}
-                                    <br />
+                                    {this.renderCurrentPlan()}
+                                    {this.renderBillingDate()}
                                     {this.renderPaymentCard()}
                                 </div>
                                 <div className="col-md-6 text-md-end">
-                                    <Link className="p-link" to="/profile/cancelsubscription">Cancel Subscription</Link>
+                                    {this.renderCancelSubLink()}
+                                    {this.renderRemoveCardLink()}
+                                    {this.renderTransactionLink()}
                                 </div>
                             </div>
                         </div>
                     </div>
                 );
-            }else if(this.props.auth.current_sub.stripe.type==="cancelled"){
-                return (
-                    <div>
-                        <div className="p-title">
-                            Subscription and Billing
-                        </div>
-                        <div className="alert alert-warning">
-                            You have cancelled your subscription.<br />
-                            But you can still enjoy all the content till {_.split(this.props.auth.current_sub.stripe.current_period_end," ",2)[0]}.
-                        </div>
-                        {this.renderPaymentCard()}
-                    </div>
-                );
-            }else if(this.props.auth.current_sub.stripe.type==="NewUser"){
-                return this.renderPaymentCard();
             }
         }else{ return <SpinnerBorder />; };
     };
@@ -127,7 +139,7 @@ class Profile extends React.Component {
             if(this.props.auth.current_sub.stripe.type==="NewUser"){
                 return <SelectPlan />;
             };
-        }else{ return <SpinnerBorder /> };
+        }else{ return <SpinnerBorder />; };
     };
 
     render() {
