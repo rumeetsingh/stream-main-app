@@ -60,6 +60,20 @@ class Profile extends React.Component {
                             </div>
                         </div>
                     );
+                }else if(this.props.auth.current_sub.stripe.type==="NewUser"){
+                    return (
+                        <div>
+                            <div className="p-title">
+                                Subscription and Billing
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6"><span className="p-name">Payment Card: </span>{this.renderCardCompany()}{" **** **** **** " + this.props.acc.cards[0].number_hidden.slice(1,)}</div>
+                                <div className="col-md-6 text-md-end">
+                                    <Link className="p-link" to="/profile/removecard">Remove Card</Link>
+                                </div>
+                            </div>
+                        </div>
+                    );
                 };
             };
         };
@@ -102,6 +116,8 @@ class Profile extends React.Component {
                         {this.renderPaymentCard()}
                     </div>
                 );
+            }else if(this.props.auth.current_sub.stripe.type==="NewUser"){
+                return this.renderPaymentCard();
             }
         }else{ return <SpinnerBorder />; };
     };
