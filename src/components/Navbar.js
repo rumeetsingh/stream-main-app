@@ -37,7 +37,7 @@ class Navbar extends React.Component {
             <div className="row justify-content-md-between justify-content-lg-around align-items-center navbar-container">
                 <div className="col-md-3 no-select">
                     <Link to="/">
-                        <img className="main-logo cursor-pointer" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1560261432/foxedo-nav-logo-with-padding_l8lps0.png" alt="Foxedo" />
+                        <img className="main-logo cursor-pointer" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561012302/foxedo-nav-logo-with-padding_l8lps0_gczxgj.png" alt="Foxedo" />
                     </Link>
                 </div>
                 <Search />

@@ -11,12 +11,12 @@
 }
 
 .p-name{
-    color: #ff7200;
+    color: #f2410a;
 }
 
 .p-plan-card-name{
     padding: 20px;
-    background-color: #ffd8ba;
+    background-color: #e59379;
     color: white;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -35,7 +35,7 @@
 }
 
 .p-card-active{
-    background-color: #ff7200;
+    background-color: #f2410a;
     color: white;
 }
 
@@ -56,17 +56,17 @@
     margin-top: 15px;
     margin-bottom: 25px;
     width: 50%;
-    background-color: #ff7200;
+    background-color: #f2410a;
     color: white;
     transition: 0.3s;
 }
 
 .p-btn:hover{
-    background-color: #ff7b11;
+    background-color: #ef4510;
 }
 
 .p-btn:active{
-    background-color: #e26500;
+    background-color: #d63e0e;
 }
 
 .p-btn:focus{
@@ -96,7 +96,7 @@
     width: 100%;
     padding: 10px 10px 8px 10px;
     font-size: 15px;
-    border: 1px solid #ff7200;
+    border: 1px solid #f2410a;
     border-radius: 10px;
 }
 

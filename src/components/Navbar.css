@@ -35,7 +35,7 @@
     color: white;
     width: 100%;
     padding: 10px 20px 10px 20px;
-    background-color: #ffa861;
+    background-color: #f2410a;
     border: none;
     transition: 0.3s;
     border-top-left-radius: 20px;
@@ -43,14 +43,13 @@
 }
 
 .search-input:focus{
-    background-color: #ff9d4d;
     outline: none;
 }
 
 .search-button{
     padding: 14px;
     color: white;
-    background-color: #ffa861;
+    background-color: #f2410a;
     border: none;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -90,18 +89,18 @@
 .nav-item{
     padding: 10px 15px 10px 15px;
     border: none;
-    background-color: #ff7200;
+    background-color: #f2410a;
     border-radius: 20px;
     text-decoration: none;
     color: white;
 }
 
 .nav-item:hover{
-    background-color: #ff7b11;
+    background-color: #ef4510;
 }
 
 .nav-item:active{
-    background-color: #e26500;
+    background-color: #d63e0e;
 }
 
 .nav-item:focus{

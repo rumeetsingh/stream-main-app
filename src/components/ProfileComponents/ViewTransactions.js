@@ -20,9 +20,7 @@ class ViewTransactions extends React.Component{
                     this.setState({phase:3})
                 };
         }else if(this.props.auth.isSignedIn===true){
-            if(this.props.trans===null){
-                await this.props.fetchTransactions(this.props.auth.token);
-            };
+            await this.props.fetchTransactions(this.props.auth.token);
             this.setState({phase:3})
         };
     };
