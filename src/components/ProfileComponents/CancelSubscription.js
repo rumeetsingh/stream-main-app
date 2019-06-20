@@ -59,9 +59,11 @@ class CancelSubscription extends React.Component{
     render() {
         if(this.props.auth.isSignedIn){
             return (
-                <Foxedo>
-                    {this.renderComponent()}
-                </Foxedo>
+                <div className="container-fluid">
+                    <Foxedo>
+                        {this.renderComponent()}
+                    </Foxedo>
+                </div>
                 );
         }else{
             return <Redirect to="/profile" />

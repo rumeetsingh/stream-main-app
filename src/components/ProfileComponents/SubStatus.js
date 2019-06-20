@@ -44,9 +44,11 @@ class SubStatus extends React.Component {
             return <div>Invalid Request</div>
         }
         return (
-            <Foxedo>
-                {this.renderContent()}
-            </Foxedo>
+            <div className="container-fluid">
+                <Foxedo>
+                    {this.renderContent()}
+                </Foxedo>
+            </div>
         );
     };
 }

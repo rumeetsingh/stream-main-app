@@ -82,9 +82,11 @@ class AddCard extends React.Component{
 
     render() {
         return (
-            <Foxedo>
-                {this.renderContent()}
-            </Foxedo>
+            <div className="container-fluid">
+                <Foxedo>
+                    {this.renderContent()}
+                </Foxedo>
+            </div>
         );
     };
 }

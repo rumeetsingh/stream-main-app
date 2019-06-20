@@ -1,16 +1,16 @@
 import React from 'react';
 
 
-const Footer = () => {
+const Footer = (props) => {
     return (
-        <div className="row footer">
+        <footer style={{ marginTop:props.mTop }} className="row footer">
             <div className="col-md-6 footer-col">
                 © Foxedo 2019
             </div>
             <div className="col-md-6 footer-col">
                 © Foxedo 2019
             </div>
-        </div>
+        </footer>
     )
 }
 

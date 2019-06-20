@@ -50,7 +50,7 @@ class Home extends React.Component{
                         </div>
                         <hr />
                     </div>
-                    <Footer />
+                    <Footer mTop="10px" />
                 </div>
             </div>
         );

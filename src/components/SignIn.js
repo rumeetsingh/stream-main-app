@@ -4,6 +4,7 @@ import Foxedo from './Foxedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { reduxForm,Field } from 'redux-form';
+import Footer from './Footer';
 import './CreateAccount.css';
 import { signIn } from '../actions';
 import { connect } from 'react-redux';
@@ -43,18 +44,21 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <Foxedo>
-                <div className="ca-card text-center">
-                    <div className="ca-card-title">Sign In</div>
-                    {this.renderFailError()}
-                    <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="text-start">
-                        <Field name="email" component={this.renderInput} type="email" label="Email Address" />
-                        <Field name="password" component={this.renderInput} type="password" label="Password" />
-                        <button className="ca-btn cursor-pointer" type="submit">Submit</button>
-                    </form>
-                    Don't have an account? <Link to="/createaccount" className="ca-link">Create Account <FontAwesomeIcon icon={faCaretRight} /></Link>
-                </div>
-            </Foxedo>
+            <div className="container-fluid">
+                <Foxedo>
+                    <div className="ca-card text-center">
+                        <div className="ca-card-title">Sign In</div>
+                        {this.renderFailError()}
+                        <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="text-start">
+                            <Field name="email" component={this.renderInput} type="email" label="Email Address" />
+                            <Field name="password" component={this.renderInput} type="password" label="Password" />
+                            <button className="ca-btn cursor-pointer" type="submit">Submit</button>
+                        </form>
+                        Don't have an account? <Link to="/createaccount" className="ca-link">Create Account <FontAwesomeIcon icon={faCaretRight} /></Link>
+                    </div>
+                </Foxedo>
+                <Footer mTop="250px" />
+            </div>
         );
     };
 }
