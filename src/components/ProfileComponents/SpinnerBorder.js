@@ -6,7 +6,7 @@ const SpinnerBorder = () => {
         <div className="row aling-items-center">
             <div className="col text-center">
                 <div style={{marginTop:'50px',marginBottom:'50px'}} className="spinner-border text-secondary" role="status">
-                    <span className="sr-only">Loading...</span>
+                    <span className="sr-only"></span>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router,Route } from 'react-router-dom';
+import { Router,Route,Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from './Home';
 import CreateAccount from './CreateAccount';
@@ -10,6 +10,7 @@ import AddCard from './ProfileComponents/AddCard';
 import CancelSubscription from './ProfileComponents/CancelSubscription';
 import RemoveCard from './ProfileComponents/RemoveCard';
 import Test from './CreateAccountComponents/Test';
+import ShowDetail from './ShowDetial';
 import ViewTransactions from './ProfileComponents/ViewTransactions';
 import history from '../history';
 import { signInAndfetchProfile } from '../actions';
@@ -26,16 +27,19 @@ class App extends React.Component {
     render() {
         return (
             <Router history={history}>
-                <Route path='/' exact component={Home} />
-                <Route path='/createaccount' exact component={CreateAccount} />
-                <Route path='/signin' exact component={SignIn} />
-                <Route path='/profile' exact component={Profile} />
-                <Route path='/profile/addcard' exact component={AddCard} />
-                <Route path='/profile/substatus' exact component={SubStatus} />
-                <Route path='/profile/cancelsubscription' exact component={CancelSubscription} />
-                <Route path='/profile/removecard' exact component={RemoveCard} />
-                <Route path='/profile/transactions' exact component={ViewTransactions} />
-                <Route path='/test' exact component={Test} />
+                <Switch>
+                    <Route path='/' exact component={Home} />
+                    <Route path='/createaccount' exact component={CreateAccount} />
+                    <Route path='/signin' exact component={SignIn} />
+                    <Route path='/profile' exact component={Profile} />
+                    <Route path='/profile/addcard' exact component={AddCard} />
+                    <Route path='/profile/substatus' exact component={SubStatus} />
+                    <Route path='/profile/cancelsubscription' exact component={CancelSubscription} />
+                    <Route path='/profile/removecard' exact component={RemoveCard} />
+                    <Route path='/profile/transactions' exact component={ViewTransactions} />
+                    <Route path='/shows/:id' exact component={ShowDetail} />
+                    <Route path='/test' exact component={Test} />
+                </Switch>
             </Router>
         );
     };

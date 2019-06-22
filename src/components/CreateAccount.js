@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Foxedo from './Foxedo';
-import Footer from './Footer';
 import './CreateAccount.css';
 import CreateAccountForm from './CreateAccountComponents/CreateAccountForm';
 import RegisterSuccess from './CreateAccountComponents/RegisterSuccess';
@@ -30,7 +29,6 @@ class CreateAccount extends React.Component {
                 <Foxedo>
                     {this.renderPage()}
                 </Foxedo>
-                <Footer mTop="130px" />
             </div>
         );
     };

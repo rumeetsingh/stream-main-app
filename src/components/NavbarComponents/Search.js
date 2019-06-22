@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
@@ -20,12 +21,12 @@ class Search extends React.Component {
     };
 
     onBlur = () => {
-        this.setState({searchFor:"",showResults:false});
+        setTimeout(() => {this.setState({searchFor:"",showResults:false})},200);
     };
 
     renderResultCard = () => {
         return this.props.results.slice(0,4).map(result => {
-            return <div key={result.id} className="results-card cursor-pointer">{result.name}</div>;
+            return <Link key={result.id} className="results-card cursor-pointer" to={`/shows/${result.id}`} >{result.name}</Link>;
         });
     };
 

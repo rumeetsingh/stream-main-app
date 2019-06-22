@@ -1,8 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import Footer from './Footer';
 import './Home.css';
 
@@ -33,16 +31,16 @@ class Home extends React.Component{
                             <div className="h-01-title">What's new on Foxedo</div>
                             <div className="row">
                                 <div className="col-md-3">
-                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/01-min_rb8pt5.jpg" alt="image" />
+                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/01-min_rb8pt5.jpg" alt="h-01-poster" />
                                 </div>
                                 <div className="col-md-3">
-                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/03-min_l0isq6.jpg" alt="image" />
+                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/03-min_l0isq6.jpg" alt="h-01-poster" />
                                 </div>
                                 <div className="col-md-3">
-                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/02-min_ffuzml.jpg" alt="image" />
+                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/02-min_ffuzml.jpg" alt="h-01-poster" />
                                 </div>
                                 <div className="col-md-3">
-                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/04-min_dwg2fs.jpg" alt="image" />
+                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/04-min_dwg2fs.jpg" alt="h-01-poster" />
                                 </div>
                             </div>
                             <br />

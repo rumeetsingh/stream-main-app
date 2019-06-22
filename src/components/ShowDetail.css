@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+
+@media only screen and (max-width: 768px){
+    .sd-name{
+        font-size: 30px !important;
+    }
+    .sd-info-item{
+        font-size: 15px !important;
+    }
+}
+
+
+.sd-trailer-container{
+    margin-top: 20px;
+}
+
+.sd-name{
+    font-family: 'Righteous', cursive;
+    color: white;
+    font-size: 45px;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+.sd-info{
+    color: white;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+.sd-info-item{
+    padding: 2px 10px 5px 10px;
+    background-color: rgba(0, 0, 0, 0.33);
+    border-radius: 25px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.sd-description{
+    color: white;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}

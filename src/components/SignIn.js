@@ -4,7 +4,6 @@ import Foxedo from './Foxedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { reduxForm,Field } from 'redux-form';
-import Footer from './Footer';
 import './CreateAccount.css';
 import { signIn } from '../actions';
 import { connect } from 'react-redux';
@@ -34,9 +33,9 @@ class SignIn extends React.Component {
                 <div className="alert alert-danger">
                     Incorrect Email or Password!
                 </div>
-            )
-        }
-    }
+            );
+        };
+    };
 
     onSubmit = (formValues) => {
         this.props.signIn(formValues);
@@ -57,7 +56,6 @@ class SignIn extends React.Component {
                         Don't have an account? <Link to="/createaccount" className="ca-link">Create Account <FontAwesomeIcon icon={faCaretRight} /></Link>
                     </div>
                 </Foxedo>
-                <Footer mTop="250px" />
             </div>
         );
     };
