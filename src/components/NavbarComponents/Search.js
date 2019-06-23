@@ -55,7 +55,7 @@ class Search extends React.Component {
                 </div>
             );
         };
-    }
+    };
 
     onSubmit = (event) => {
         event.preventDefault();

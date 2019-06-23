@@ -2,7 +2,7 @@
 
 @media only screen and (max-width: 768px){
     .sd-name{
-        font-size: 30px !important;
+        font-size: 32px !important;
     }
     .sd-info-item{
         font-size: 15px !important;
@@ -25,12 +25,12 @@
 .sd-info{
     color: white;
     padding-left: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     margin-top: 5px;
 }
 
 .sd-info-item{
-    padding: 2px 10px 5px 10px;
+    padding: 2px 10px 4px 10px;
     background-color: rgba(0, 0, 0, 0.33);
     border-radius: 25px;
     margin-left: 3px;
@@ -41,4 +41,84 @@
     color: white;
     padding-left: 10px;
     margin-bottom: 20px;
+}
+
+.sd-signup-text{
+    padding: 10px;
+}
+
+.sd-signup-btn{
+    padding: 10px 20px;
+    font-size: 15px;
+    border:none;
+    cursor: pointer;
+    background-color: #f2410a;
+    color: white;
+    border-radius: 25px;
+    margin: 10px 0px;
+}
+
+.sd-signup-btn:hover{
+    background-color: #ef4510;
+}
+
+.sd-signup-btn:active{
+    background-color: #d63e0e;
+}
+
+.sd-signup-btn:focus{
+    outline: none;
+}
+
+.sd-episodes-title{
+    margin-bottom: 20px;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 35px;
+}
+
+.sd-season-row{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.sd-season-btn{
+    padding: 10px 20px;
+    font-size: 17px;
+    border:none;
+    cursor: pointer;
+    color: #f2410a;
+    background-color: white;
+    border-radius: 25px;
+    margin: 0px 10px 10px 0px;
+    border: #f2410a solid 2px;
+}
+
+.sd-season-btn:focus{
+    outline: none;
+}
+
+.sd-btn-active{
+    color: white;
+    background-color: #f2410a;
+}
+
+.sd-episode-card{
+    margin-bottom: 10px;
+    transition: transform .2s ease-in-out;
+}
+
+.sd-episode-card:hover{
+    transform: scale(1.05);
+}
+
+.sd-episode-card-header{
+    border-radius: 17px;
+}
+
+.sd-episode-card-body{
+    border-radius: 17px;
+    font-size: 18px;
+    padding: 5px;
+    margin-top: 2px;
+    background-color: #d6d6d6;
 }

@@ -3,24 +3,24 @@
     background-color: white;
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 6;
 }
 
 .main-logo{
     height: 40px;
 }
 
-::placeholder{
-    color: #e5e5e5;
+.search-input::placeholder{
+    color: white;
     opacity: 1; /* Firefox */
 }
   
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #e5e5e5;
+.search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
 }
   
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: #e5e5e5;
+.search-input::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
 }
 
 .search-field{

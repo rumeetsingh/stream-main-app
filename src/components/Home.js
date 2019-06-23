@@ -1,59 +1,56 @@
 import React from 'react';
 import Navbar from './Navbar';
-import { Link } from 'react-router-dom';
-import Footer from './Footer';
+import { connect } from 'react-redux';
+import NewUserHome from './HomeComponents/NewUserHome';
+import ActiveUserHome from './HomeComponents/ActiveUserHome';
 import './Home.css';
 
 
 class Home extends React.Component{
 
     render() {
-        return (
-            <div className="container-fluid">
-                <Navbar />
-                <div className="main-page">
-                    <div className="row justify-content-center welcome-back">
-                        <div className="col-md-8">
-                            <div className="welcome-container text-md-end no-select">
-                                <div className="welcome-text">Welcome to Foxedo</div>
-                                <div className="welcome-text-small">Join Foxedo to watch the latest movies, exclusive TV shows as well as award-winning Foxedo Originals.</div>
-                                <Link to='/createaccount'><button className="main-btn">Start your 30-day free trial</button></Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="container">
-                        <div className="h-01 text-center">
-                            <div className="h-01-title">Pay Monthly/Annually</div>
-                            <span className="h-01-text">Enjoy your first month for free.<br />After that its just <span style={{color:'#f2410a'}}>₹129/month</span> or <span style={{color:'#f2410a'}}>₹999/year</span>.</span>
-                        </div>
-                        <hr />
-                        <div className="h-01 text-center">
-                            <div className="h-01-title">What's new on Foxedo</div>
-                            <div className="row">
-                                <div className="col-md-3">
-                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/01-min_rb8pt5.jpg" alt="h-01-poster" />
-                                </div>
-                                <div className="col-md-3">
-                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/03-min_l0isq6.jpg" alt="h-01-poster" />
-                                </div>
-                                <div className="col-md-3">
-                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/02-min_ffuzml.jpg" alt="h-01-poster" />
-                                </div>
-                                <div className="col-md-3">
-                                    <img className="h-01-image" src="https://res.cloudinary.com/dgf6joms9/image/upload/v1561023636/04-min_dwg2fs.jpg" alt="h-01-poster" />
-                                </div>
-                            </div>
-                            <br />
-                            <span className="h-01-text">Majority of the top rated shows are on Foxedo.</span>
-                        </div>
-                        <hr />
-                    </div>
-                    <Footer mTop="10px" />
+
+        if(this.props.auth.isSignedIn===false){
+
+           return (
+                <div className="container-fluid">
+                    <Navbar />
+                    <NewUserHome isSignedIn={this.props.auth.isSignedIn} />
                 </div>
-            </div>
-        );
+            );
+
+        }else if(this.props.auth.isSignedIn===true){
+
+            if(this.props.auth.current_sub.stripe!==null){
+
+                if(this.props.auth.current_sub.stripe.type==="active"||this.props.auth.current_sub.stripe.type==="cancelled"){
+                    return (
+                        <div className="container-fluid">
+                            <Navbar />
+                            <ActiveUserHome />
+                        </div>
+                    );
+                }else if(this.props.auth.current_sub.stripe.type==="NewUser"){
+                    return (
+                        <div className="container-fluid">
+                            <Navbar />
+                            <NewUserHome isSignedIn={this.props.auth.isSignedIn} />
+                        </div>
+                    );
+                };
+
+            }else{ return null; };
+
+        };
+        
     }
 }
 
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        auth:state.auth
+    }
+}
+
+export default connect(mapStateToProps,)(Home);
