@@ -18,6 +18,14 @@ class ShowDetail extends React.Component {
         this.setState({data:response.data});
     };
 
+    checkCurrentShow = async () => {
+        if(this.state.data!==null){
+            if(this.state.data.id.toString()!==this.props.match.params.id.toString()){
+                window.location.reload(); 
+            };
+        };
+    };
+
     renderSignUp = () => {
         if(this.props.auth.isSignedIn===false){
             return (
@@ -36,6 +44,7 @@ class ShowDetail extends React.Component {
     };
 
     render() {
+        this.checkCurrentShow()
         if(this.state.data!==null&&this.props.auth.current_sub!==null){
             return (
                 <div className="container-fluid">
@@ -71,7 +80,7 @@ class ShowDetail extends React.Component {
                         </div>
                         {this.renderSignUp()}
                         <Episodes showID={this.state.data.id} />
-                        <Footer mTop="10px" />
+                        <Footer mTop="0px" />
                     </div>
                 </div>
             );

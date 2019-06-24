@@ -105,3 +105,63 @@
 .h-01-image{
     width: 100%;
 }
+
+.h-show-title{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.h-show-row{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.h-show-card{
+    min-width: 240px;
+    max-width: 240px;
+    margin-right: 3px;
+    transition: all 0.3s ease;
+}
+
+.h-show-card:hover{
+    transform: scale(1.35);
+    margin-left: 41px;
+    margin-right: 44px;
+}
+
+.slick-list{
+    overflow: visible !important;
+    transition: all 0.3s ease;
+}
+
+.slick-list:hover{
+    margin-left: -45px;
+}
+
+.slick-arrow{
+    z-index: 2;
+}
+
+.slick-prev{
+    left: -38px !important;
+}
+
+.slick-prev:before {
+    color: #f2410a !important;
+    font-size: 30px !important;
+}
+
+.slick-prev:after {
+    color: #f2410a !important;
+    font-size: 30px !important;
+}
+  
+.slick-next:before {
+    color: #f2410a !important;
+    font-size: 30px !important;
+}
+
+.slick-next:after {
+    color: #f2410a !important;
+    font-size: 30px !important;
+}

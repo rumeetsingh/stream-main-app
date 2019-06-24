@@ -26,7 +26,7 @@ class Search extends React.Component {
 
     renderResultCard = () => {
         return this.props.results.slice(0,4).map(result => {
-            return <Link key={result.id} className="results-card cursor-pointer" to={`/shows/${result.id}`} >{result.name}</Link>;
+            return <Link key={result.id} className="results-card cursor-pointer" to={`/shows/${result.id}`}>{result.name}</Link>;
         });
     };
 
