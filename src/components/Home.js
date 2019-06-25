@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import NewUserHome from './HomeComponents/NewUserHome';
 import ActiveUserHome from './HomeComponents/ActiveUserHome';
 import './Home.css';
@@ -24,12 +25,7 @@ class Home extends React.Component{
             if(this.props.auth.current_sub.stripe!==null){
 
                 if(this.props.auth.current_sub.stripe.type==="active"||this.props.auth.current_sub.stripe.type==="cancelled"){
-                    return (
-                        <div className="container-fluid">
-                            <Navbar />
-                            <ActiveUserHome />
-                        </div>
-                    );
+                    return ( <Redirect to="/shows" /> );
                 }else if(this.props.auth.current_sub.stripe.type==="NewUser"){
                     return (
                         <div className="container-fluid">
@@ -37,7 +33,7 @@ class Home extends React.Component{
                             <NewUserHome isSignedIn={this.props.auth.isSignedIn} />
                         </div>
                     );
-                }
+                };
 
             }else{
                 return (
@@ -55,7 +51,7 @@ class Home extends React.Component{
 
         };
         
-    }
+    };
 }
 
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Footer from '../Footer';
 
 
@@ -7,6 +8,11 @@ class NewUserHome extends React.Component{
 
     handleLink = () => {
         if(this.props.isSignedIn===true){
+            if(this.props.acc.trail!==null){
+                if(this.props.acc.trial===true){
+                    return <Link to='/profile'><button className="main-btn">Subscribe Now</button></Link>;
+                };
+            };
             return <Link to='/profile'><button className="main-btn">Start your 30-day free trial</button></Link>;
         }else{
             return <Link to='/createaccount'><button className="main-btn">Start your 30-day free trial</button></Link>;
@@ -58,4 +64,11 @@ class NewUserHome extends React.Component{
     };
 };
 
-export default NewUserHome;
+
+const mapStateToProps = (state) => {
+    return {
+        acc : state.accountDetails
+    };
+};
+
+export default connect(mapStateToProps,)(NewUserHome);

@@ -10,17 +10,19 @@ import AddCard from './ProfileComponents/AddCard';
 import CancelSubscription from './ProfileComponents/CancelSubscription';
 import RemoveCard from './ProfileComponents/RemoveCard';
 import Test from './CreateAccountComponents/Test';
+import ShowsList from './ShowsList';
 import ShowDetail from './ShowDetial';
 import ViewTransactions from './ProfileComponents/ViewTransactions';
 import history from '../history';
-import { signInAndfetchProfile } from '../actions';
+import { signInAndfetchProfile,fetchTrial } from '../actions';
 
 
 class App extends React.Component {
 
-    componentDidMount() {
+    componentDidMount = async () => {
         if(localStorage.getItem("foxedouVlL8S")){
-            this.props.signInAndfetchProfile(localStorage.getItem("foxedouVlL8S"));
+            await this.props.signInAndfetchProfile(localStorage.getItem("foxedouVlL8S"));
+            this.props.fetchTrial(this.props.auth.token);
         };
     };
 
@@ -37,6 +39,7 @@ class App extends React.Component {
                     <Route path='/profile/cancelsubscription' exact component={CancelSubscription} />
                     <Route path='/profile/removecard' exact component={RemoveCard} />
                     <Route path='/profile/transactions' exact component={ViewTransactions} />
+                    <Route path='/shows' exact component={ShowsList} />
                     <Route path='/shows/:id' exact component={ShowDetail} />
                     <Route path='/test' exact component={Test} />
                 </Switch>
@@ -52,4 +55,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps,{ signInAndfetchProfile })(App);
+export default connect(mapStateToProps,{ signInAndfetchProfile,fetchTrial })(App);

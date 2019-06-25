@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import basic from '../../apis/basic';
 
@@ -16,7 +17,7 @@ class ShowsRow extends React.Component{
     renderShowCard = () => {
         return this.state.data.map(item => {
             return (
-                <div key={item.id} className="h-show-card">
+                <Link key={item.id} to={`/shows/${item.id}`} className="h-show-card">
                     <img width="100%" src={item.poster}  alt="Poster" />
                     <div className="show-overlay">
                         <div className="show-overlay-content">
@@ -25,7 +26,7 @@ class ShowsRow extends React.Component{
                             <div className="show-overlay-desc">{_.truncate(item.description,{ 'length': 100, 'separator': ' ' })}</div>
                         </div>
                     </div>
-                </div>
+                </Link>
             );
         });
     };

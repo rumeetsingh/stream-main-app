@@ -127,11 +127,11 @@
 
 .slick-slide{
     margin: 0 2px;
-    transition: all 0.4s ease;
-    -webkit-transition: all 0.3s ease;
+    transition: transform 0.4s ease;
+    -webkit-transition: transform 0.4s ease;
 }
 
-.slick-list:hover .slick-slide{
+.slick-track:hover .slick-slide{
     transform: translateX(-25%);
 }
 

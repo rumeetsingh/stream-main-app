@@ -18,7 +18,7 @@ class ShowDetail extends React.Component {
         this.setState({data:response.data});
     };
 
-    checkCurrentShow = async () => {
+    checkCurrentShow = () => {
         if(this.state.data!==null){
             if(this.state.data.id.toString()!==this.props.match.params.id.toString()){
                 window.location.reload(); 
@@ -45,7 +45,7 @@ class ShowDetail extends React.Component {
 
     render() {
         this.checkCurrentShow()
-        if(this.state.data!==null&&this.props.auth.current_sub!==null){
+        if(this.state.data!==null){
             return (
                 <div className="container-fluid">
                     <Navbar />

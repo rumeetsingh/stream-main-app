@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 const Footer = (props) => {
@@ -8,7 +9,7 @@ const Footer = (props) => {
                 © Foxedo 2019
             </div>
             <div className="col-md-6 footer-col">
-                © Foxedo 2019
+                <Link className="p-link" to="/shows">Web Shows</Link>
             </div>
         </footer>
     )
