@@ -6,7 +6,7 @@ import basic from '../../apis/basic';
 
 class ShowsRow extends React.Component{
 
-    state = {data:null}
+    state = {data:null,}
 
     componentDidMount = async () => {
         const response = await basic.get(`/shows/`);
@@ -79,15 +79,6 @@ class ShowsRow extends React.Component{
                         </div>
 
                             <Slider {...settings}>
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
                                 {this.renderShowCard()}
                             </Slider>
 
