@@ -21,7 +21,14 @@ class ShowsRow extends React.Component{
         return this.state.data.map(item => {
             return (
                 <div key={item.id} className="h-show-card">
-                    <img style={{borderRadius:'10px'}} width="100%" src={item.poster}  alt="Poster" />
+                    <img width="100%" src={item.poster}  alt="Poster" />
+                    <div className="show-overlay">
+                        <div className="show-overlay-content">
+                            <div className="show-overlay-name">{item.name}</div>
+                            <div className="show-overlay-info">{item.category} • {item.maker}</div>
+                            <div className="show-overlay-desc">{_.truncate(item.description,{ 'length': 100, 'separator': ' ' })}</div>
+                        </div>
+                    </div>
                 </div>
             );
         });
@@ -79,6 +86,14 @@ class ShowsRow extends React.Component{
                         </div>
 
                             <Slider {...settings}>
+                                {this.renderShowCard()}
+                                {this.renderShowCard()}
+                                {this.renderShowCard()}
+                                {this.renderShowCard()}
+                                {this.renderShowCard()}
+                                {this.renderShowCard()}
+                                {this.renderShowCard()}
+                                {this.renderShowCard()}
                                 {this.renderShowCard()}
                             </Slider>
 
