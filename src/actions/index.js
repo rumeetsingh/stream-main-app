@@ -27,6 +27,7 @@ export const signIn = (formValues) => async (dispatch,getState) => {
         await localStorage.setItem("foxedouVlL8S",response.data.token);
         await dispatch(fetchProfile(response.data.token));
         await dispatch(fetchCurrentSub(response.data.token));
+        await dispatch(fetchTrial(response.data.token));
         if(getState().auth.current_sub.stripe.type==="NewUser"){
             history.push('/profile');
         }else{
@@ -60,7 +61,8 @@ export const fetchProfile = (token) => async (dispatch) => {
 export const signInAndfetchProfile = (token) => async (dispatch) => {
     await dispatch(signInAuto(token));
     await dispatch(fetchProfile(token));
-    dispatch(fetchCurrentSub(token));
+    await dispatch(fetchCurrentSub(token));
+    dispatch(fetchTrial(token));
 };
 
 export const signOut = () => (dispatch) => {

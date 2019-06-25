@@ -22,7 +22,6 @@ class App extends React.Component {
     componentDidMount = async () => {
         if(localStorage.getItem("foxedouVlL8S")){
             await this.props.signInAndfetchProfile(localStorage.getItem("foxedouVlL8S"));
-            this.props.fetchTrial(this.props.auth.token);
         };
     };
 

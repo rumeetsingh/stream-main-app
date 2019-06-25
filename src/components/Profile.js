@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCcVisa,faCcMastercard } from '@fortawesome/free-brands-svg-icons'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
-import { fetchPlans,fetchCards,signInAndfetchProfile,fetchTrial } from '../actions';
+import { fetchPlans,fetchCards,signInAndfetchProfile } from '../actions';
 import SpinnerBorder from './ProfileComponents/SpinnerBorder';
 import Navbar from './Navbar';
 import SelectPlan from './ProfileComponents/SelectPlan';
@@ -19,7 +19,6 @@ class Profile extends React.Component {
         if(localStorage.getItem("foxedouVlL8S")){
             await this.props.signInAndfetchProfile(localStorage.getItem("foxedouVlL8S"));
             this.props.fetchCards(this.props.auth.token);
-            this.props.fetchTrial(this.props.auth.token);
         };
     };
 
@@ -179,4 +178,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps,{ fetchPlans,fetchCards,signInAndfetchProfile,fetchTrial })(Profile);
+export default connect(mapStateToProps,{ fetchPlans,fetchCards,signInAndfetchProfile })(Profile);
