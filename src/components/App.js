@@ -9,23 +9,29 @@ import SubStatus from './ProfileComponents/SubStatus';
 import AddCard from './ProfileComponents/AddCard';
 import CancelSubscription from './ProfileComponents/CancelSubscription';
 import RemoveCard from './ProfileComponents/RemoveCard';
-import Test from './CreateAccountComponents/Test';
+import EpisodeDetail from './ShowDetailComponents/EpisodeDetail';
 import ShowsList from './ShowsList';
 import ShowDetail from './ShowDetial';
 import ViewTransactions from './ProfileComponents/ViewTransactions';
+import Spinner from './FullScreenSpinner';
 import history from '../history';
-import { signInAndfetchProfile,fetchTrial } from '../actions';
+import { signInAndfetchProfile,fetchTrial,fetchPlans } from '../actions';
 
 
 class App extends React.Component {
+
+    state = { phase:1 }
 
     componentDidMount = async () => {
         if(localStorage.getItem("foxedouVlL8S")){
             await this.props.signInAndfetchProfile(localStorage.getItem("foxedouVlL8S"));
         };
+        await this.props.fetchPlans();
+        this.setState({phase:2})
     };
 
     render() {
+        if(this.state.phase===2){
         return (
             <Router history={history}>
                 <Switch>
@@ -40,10 +46,13 @@ class App extends React.Component {
                     <Route path='/profile/transactions' exact component={ViewTransactions} />
                     <Route path='/shows' exact component={ShowsList} />
                     <Route path='/shows/:id' exact component={ShowDetail} />
-                    <Route path='/test' exact component={Test} />
+                    <Route path='/shows/:sid/:eid' exact component={EpisodeDetail} />
                 </Switch>
             </Router>
         );
+    }else if(this.state.phase===1){
+        return <Spinner />;
+    }
     };
 }
 
@@ -54,4 +63,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps,{ signInAndfetchProfile,fetchTrial })(App);
+export default connect(mapStateToProps,{ signInAndfetchProfile,fetchTrial,fetchPlans })(App);

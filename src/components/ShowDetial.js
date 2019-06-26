@@ -3,7 +3,7 @@ import basic from '../apis/basic';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
-import Spinner from './ShowDetailComponents/FullScreenSpinner';
+import Spinner from './FullScreenSpinner';
 import Episodes from './ShowDetailComponents/Episodes';
 import Footer from './Footer';
 import './ShowDetail.css'
@@ -11,11 +11,15 @@ import Plyr from 'react-plyr';
 
 class ShowDetail extends React.Component {
 
-    state = { data:null };
+    state = { data:null,errors:null };
 
     componentDidMount = async () => {
-        const response = await basic.get(`/shows/${this.props.match.params.id}`);
-        this.setState({data:response.data});
+        try{
+            const response = await basic.get(`/shows/${this.props.match.params.id}`);
+            this.setState({data:response.data});
+        }catch(errors){
+            this.setState({errors:errors})
+        };
     };
 
     checkCurrentShow = () => {
@@ -45,6 +49,9 @@ class ShowDetail extends React.Component {
 
     render() {
         this.checkCurrentShow()
+        if(this.state.errors!==null){
+            return <div>404 Page Not Found!</div>;
+        };
         if(this.state.data!==null){
             return (
                 <div className="container-fluid">
@@ -67,7 +74,7 @@ class ShowDetail extends React.Component {
                                     {this.state.data.name}
                                 </div>
                                 <div className="sd-info">
-                                    <span className="sd-info-item">{(this.state.data.release_date_time).slice(0,4)}</span>
+                                    <span className="sd-info-item">{(new Date(this.state.data.release_date_time)).getFullYear()}</span>
                                     <span className="sd-info-item">{this.state.data.category}</span>
                                     <span className="sd-info-item">{this.state.data.language}</span>
                                     <span className="sd-info-item">{this.state.data.min_age + "+"}</span>
@@ -84,7 +91,8 @@ class ShowDetail extends React.Component {
                     </div>
                 </div>
             );
-        }else{ return <div className="container-fluid"><Navbar /><Spinner /></div>; }
+        }
+        return <div className="container-fluid"><Navbar /><Spinner /></div>;
     };
 
 }

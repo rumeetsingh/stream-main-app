@@ -2,7 +2,7 @@ import React from 'react';
 import Foxedo from '../Foxedo';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCards,fetchCurrentSub } from '../../actions';
+import { fetchCards,fetchCurrentSub,fetchTrial } from '../../actions';
 import basic from '../../apis/basic';
 import Spinner from '../CreateAccountComponents/Spinner';
 
@@ -21,11 +21,11 @@ class SubStatus extends React.Component {
                     "plan" : this.props.acc.selectedPlan
                 },{ headers})
                 await this.props.fetchCurrentSub(this.props.auth.token);
+                await this.props.fetchTrial(this.props.auth.token);
                 this.setState({success:true});
             }catch(errors){
                 this.setState({success:false});
             }
-
         };
     };
 
@@ -41,7 +41,7 @@ class SubStatus extends React.Component {
 
     render() {
         if(this.props.acc.selectedPlan===null){
-            return <div>Invalid Request</div>
+            return <Redirect to="/profile" />;
         }
         return (
             <div className="container-fluid">
@@ -60,4 +60,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps,{ fetchCards,fetchCurrentSub })(SubStatus);
+export default connect(mapStateToProps,{ fetchCards,fetchCurrentSub,fetchTrial })(SubStatus);

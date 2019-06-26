@@ -44,40 +44,42 @@ class AddCard extends React.Component{
     };
 
     renderContent = () => {
-        if(this.props.cards!==null){
-            if(this.props.cards.length===0){
+        if(this.props.acc.cards.length===0){
 
-                if(this.state.phase===1){
-                    return (
-                        <div className="ca-card">
-                            <div className="ca-card-title text-center">Enter Your Payment Information</div>
-                            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                                <Field name="cardNumber" component={this.inputComponent} place="1111222233334444" max="22" label="Card Number" />
-                                <div className="row">
-                                    <div className="col ig-left">
-                                        <Field name="expiration" component={this.inputComponent} place="02/2019" max="7" label="Expiration" />
-                                    </div>
-                                    <div className="col ig-right">
-                                        <Field name="cvv" component={this.inputComponent} place="123" max="3" label="CVV" />
-                                    </div>
+            if(this.state.phase===1){
+
+                if(this.props.acc.selectedPlan===null){
+                    return <Redirect to="/profile" />
+                }
+
+                return (
+                    <div className="ca-card">
+                        <div className="ca-card-title text-center">Enter Your Payment Information</div>
+                        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                            <Field name="cardNumber" component={this.inputComponent} place="1111222233334444" max="22" label="Card Number" />
+                            <div className="row">
+                                <div className="col ig-left">
+                                    <Field name="expiration" component={this.inputComponent} place="02/2019" max="7" label="Expiration" />
                                 </div>
-                                <button className="ca-btn cursor-pointer" type="submit">Submit</button>
-                            </form>
-                        </div>
-                    );
-                }else if(this.state.phase===2){
-                    return <Spinner />
-                }else if(this.state.phase===3){
-                    return <Redirect to="/profile/substatus" />
-                }else if(this.state.phase===4){
-                    return <div>An Error Occured</div>
-                };
-            }else{
-                return <div>You already have a card</div>;
+                                <div className="col ig-right">
+                                    <Field name="cvv" component={this.inputComponent} place="123" max="3" label="CVV" />
+                                </div>
+                            </div>
+                            <button className="ca-btn cursor-pointer" type="submit">Submit</button>
+                        </form>
+                    </div>
+                );
+            }else if(this.state.phase===2){
+                return <Spinner />
+            }else if(this.state.phase===3){
+                return <Redirect to="/profile/substatus" />
+            }else if(this.state.phase===4){
+                return <div>An Error Occured</div>
             };
         }else{
-            return <Redirect to="/profile" />;
+            return <div>You already have a card</div>;
         };
+        
     };
 
     render() {
@@ -93,7 +95,7 @@ class AddCard extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        cards : state.accountDetails.cards,
+        acc : state.accountDetails,
         auth : state.auth,
     };
 };

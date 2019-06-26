@@ -1,26 +1,17 @@
 import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCcVisa,faCcMastercard } from '@fortawesome/free-brands-svg-icons'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { fetchPlans,fetchCards,signInAndfetchProfile } from '../actions';
-import SpinnerBorder from './ProfileComponents/SpinnerBorder';
 import Navbar from './Navbar';
 import SelectPlan from './ProfileComponents/SelectPlan';
 import './Profile.css';
 
 
 class Profile extends React.Component {
-
-    componentDidMount = async () => {
-        this.props.fetchPlans();
-        if(localStorage.getItem("foxedouVlL8S")){
-            await this.props.signInAndfetchProfile(localStorage.getItem("foxedouVlL8S"));
-            this.props.fetchCards(this.props.auth.token);
-        };
-    };
 
     getPlanName = (id) => {
         if(this.props.plans.length!==0){
@@ -103,47 +94,45 @@ class Profile extends React.Component {
     };
 
     renderSubAndBilling = () => {
-        if(this.props.auth.current_sub.main!==null&&this.props.acc.cards!==null&&this.props.acc.trial!==null){
-            if(this.props.acc.trial===false){
-                return null;
-            }else{
-                return (
-                    <div>
-                        <div className="p-title">
-                            Subscription and Billing
-                        </div>
-                        <div className="p-content">
-                            <div className="row">
-                                {this.renderCancelledSub()}
-                                <div className="col-md-6">
-                                    {this.renderCurrentPlan()}
-                                    {this.renderBillingDate()}
-                                    {this.renderPaymentCard()}
-                                </div>
-                                <div className="col-md-6 text-md-end">
-                                    {this.renderCancelSubLink()}
-                                    {this.renderRemoveCardLink()}
-                                    {this.renderTransactionLink()}
-                                </div>
+
+        if(this.props.acc.trial===false){
+            return null;
+        }else{
+            return (
+                <div>
+                    <div className="p-title">
+                        Subscription and Billing
+                    </div>
+                    <div className="p-content">
+                        <div className="row">
+                            {this.renderCancelledSub()}
+                            <div className="col-md-6">
+                                {this.renderCurrentPlan()}
+                                {this.renderBillingDate()}
+                                {this.renderPaymentCard()}
+                            </div>
+                            <div className="col-md-6 text-md-end">
+                                {this.renderCancelSubLink()}
+                                {this.renderRemoveCardLink()}
+                                {this.renderTransactionLink()}
                             </div>
                         </div>
                     </div>
-                );
-            }
-        }else{ return <SpinnerBorder />; };
+                </div>
+            );
+        };
+        
     };
 
     renderSelectPlan = () => {
-        if(this.props.auth.current_sub.stripe!==null){
-            if(this.props.auth.current_sub.stripe.type==="NewUser"){
-                return <SelectPlan />;
-            };
-        }else{ return <SpinnerBorder />; };
+        if(this.props.auth.current_sub.stripe.type==="NewUser"){
+            return <SelectPlan />;
+        };
     };
 
     render() {
         if(!this.props.auth.isSignedIn){
-            return <div>Invalid Request</div>
+            return <Redirect to="/" />
         }
         return (
             <div className="container-fluid">

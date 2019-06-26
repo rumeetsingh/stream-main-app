@@ -11,7 +11,11 @@ class Episodes extends React.Component{
         const response = await basic.get(`/shows/episodes/?show=${this.props.showID}&ordering=release_date_time`);
         this.setState({data:response.data});
         if(this.state.data.length>=1){
-            this.setState({selectedSeason:_.map(this.state.data,"season_number").slice(-1)[0]})
+            if(this.props.selectedSeason){
+                this.setState({selectedSeason:this.props.selectedSeason})
+            }else{
+                this.setState({selectedSeason:_.map(this.state.data,"season_number").slice(-1)[0]})
+            }
         };
     };
 
@@ -41,7 +45,7 @@ class Episodes extends React.Component{
                             <div className="sd-season-btn-row">
                                 {this.renderSeasonButtons()}
                             </div>
-                            <EpisodesList data={_.filter(this.state.data,{season_number:this.state.selectedSeason})} />
+                            <EpisodesList sid={this.props.showID} data={_.filter(this.state.data,{season_number:this.state.selectedSeason})} />
                         </div>
                     </div>
                 );

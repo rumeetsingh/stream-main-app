@@ -8,10 +8,8 @@ class NewUserHome extends React.Component{
 
     handleLink = () => {
         if(this.props.isSignedIn===true){
-            if(this.props.acc.trail!==null){
-                if(this.props.acc.trial===true){
-                    return <Link to='/profile'><button className="main-btn">Subscribe Now</button></Link>;
-                };
+            if(this.props.acc.trial===true){
+                return <Link to='/profile'><button className="main-btn">Subscribe Now</button></Link>;
             };
             return <Link to='/profile'><button className="main-btn">Start your 30-day free trial</button></Link>;
         }else{
