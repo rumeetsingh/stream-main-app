@@ -88,14 +88,6 @@ class ShowsRow extends React.Component{
 
                             <Slider {...settings}>
                                 {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
-                                {this.renderShowCard()}
                             </Slider>
 
                     </div>
