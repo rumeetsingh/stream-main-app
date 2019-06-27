@@ -45,14 +45,16 @@ class SignIn extends React.Component {
         return (
             <div className="container-fluid">
                 <Foxedo>
-                    <div className="ca-card text-center">
-                        <div className="ca-card-title">Sign In</div>
+                    <div className="ca-card text-start">
+                        <div className="ca-card-title text-center">Sign In</div>
                         {this.renderFailError()}
                         <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="text-start">
                             <Field name="email" component={this.renderInput} type="email" label="Email Address" />
                             <Field name="password" component={this.renderInput} type="password" label="Password" />
                             <button className="ca-btn cursor-pointer" type="submit">Submit</button>
                         </form>
+                        <a href="https://foxedo.herokuapp.com/password_reset/" className="ca-link">Forgot Password <FontAwesomeIcon icon={faCaretRight} /></a>
+                        <br />
                         Don't have an account? <Link to="/createaccount" className="ca-link">Create Account <FontAwesomeIcon icon={faCaretRight} /></Link>
                     </div>
                 </Foxedo>
