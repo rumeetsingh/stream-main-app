@@ -4,12 +4,15 @@ import Foxedo from './Foxedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { reduxForm,Field } from 'redux-form';
+import Spinner from './FullScreenSpinner';
 import './CreateAccount.css';
 import { signIn } from '../actions';
 import { connect } from 'react-redux';
 
 
 class SignIn extends React.Component {
+
+    state = { phase:0 }
 
     renderErrors = (meta) => {
         if(meta.touched&&meta.error){
@@ -37,29 +40,37 @@ class SignIn extends React.Component {
         };
     };
 
-    onSubmit = (formValues) => {
-        this.props.signIn(formValues);
+    onSubmit = async (formValues) => {
+        await this.setState({phase:1});
+        await this.props.signIn(formValues);
+        if(this.props.auth.errors){
+            this.setState({phase:0})
+        };
     };
 
     render() {
-        return (
-            <div className="container-fluid">
-                <Foxedo>
-                    <div className="ca-card text-start">
-                        <div className="ca-card-title text-center">Sign In</div>
-                        {this.renderFailError()}
-                        <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="text-start">
-                            <Field name="email" component={this.renderInput} type="email" label="Email Address" />
-                            <Field name="password" component={this.renderInput} type="password" label="Password" />
-                            <button className="ca-btn cursor-pointer" type="submit">Submit</button>
-                        </form>
-                        <a href="https://foxedo.herokuapp.com/password_reset/" className="ca-link">Forgot Password <FontAwesomeIcon icon={faCaretRight} /></a>
-                        <br />
-                        Don't have an account? <Link to="/createaccount" className="ca-link">Create Account <FontAwesomeIcon icon={faCaretRight} /></Link>
-                    </div>
-                </Foxedo>
-            </div>
-        );
+        if(this.state.phase===1){
+            return <Spinner />;
+        }else if(this.state.phase===0){
+          return (
+                <div className="container-fluid">
+                    <Foxedo>
+                        <div className="ca-card text-start">
+                            <div className="ca-card-title text-center">Sign In</div>
+                            {this.renderFailError()}
+                            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="text-start">
+                                <Field name="email" component={this.renderInput} type="email" label="Email Address" />
+                                <Field name="password" component={this.renderInput} type="password" label="Password" />
+                                <button className="ca-btn cursor-pointer" type="submit">Submit</button>
+                            </form>
+                            <a href="https://foxedo.herokuapp.com/password_reset/" className="ca-link">Forgot Password <FontAwesomeIcon icon={faCaretRight} /></a>
+                            <br />
+                            Don't have an account? <Link to="/createaccount" className="ca-link">Create Account <FontAwesomeIcon icon={faCaretRight} /></Link>
+                        </div>
+                    </Foxedo>
+                </div>
+            );  
+        }; 
     };
 }
 
