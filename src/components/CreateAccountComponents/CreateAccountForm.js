@@ -104,4 +104,4 @@ const validate = (formValues) => {
 };
 
 
-export default reduxForm({form:'createAccount',validate:validate,destroyOnUnmount: false,forceUnregisterOnUnmount: true,})(CreateAccountForm);
+export default reduxForm({form:'createAccount',validate:validate})(CreateAccountForm);
