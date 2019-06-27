@@ -144,9 +144,16 @@ class Profile extends React.Component {
                                 Account Details
                             </div>
                             <div className="p-content">
-                                <span className="p-name">Name:</span> {this.props.auth.name}
-                                <br />
-                                <span className="p-name">Email:</span> {this.props.auth.email}
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <span className="p-name">Name:</span> {this.props.auth.name}
+                                        <br />
+                                        <span className="p-name">Email:</span> {this.props.auth.email} 
+                                    </div>
+                                    <div className="col-md-6 text-md-end">
+                                        <div><Link className="p-link" to="/profile/changepassword">Change Password</Link></div>
+                                    </div>
+                                </div>
                             </div>
                             {this.renderSubAndBilling()}
                             {this.renderSelectPlan()}

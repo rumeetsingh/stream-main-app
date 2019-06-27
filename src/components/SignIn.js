@@ -30,7 +30,7 @@ class SignIn extends React.Component {
     renderFailError = () => {
         if(this.props.auth.errors){
             return (
-                <div className="alert alert-danger">
+                <div className="alert alert-danger text-center">
                     Incorrect Email or Password!
                 </div>
             );

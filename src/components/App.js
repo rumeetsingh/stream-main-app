@@ -13,6 +13,7 @@ import EpisodeDetail from './ShowDetailComponents/EpisodeDetail';
 import ShowsList from './ShowsList';
 import ShowDetail from './ShowDetial';
 import ViewTransactions from './ProfileComponents/ViewTransactions';
+import ChangePassword from './ProfileComponents/ChangePassword';
 import Spinner from './FullScreenSpinner';
 import history from '../history';
 import { signInAndfetchProfile,fetchTrial,fetchPlans } from '../actions';
@@ -44,6 +45,7 @@ class App extends React.Component {
                     <Route path='/profile/cancelsubscription' exact component={CancelSubscription} />
                     <Route path='/profile/removecard' exact component={RemoveCard} />
                     <Route path='/profile/transactions' exact component={ViewTransactions} />
+                    <Route path='/profile/changepassword' exact component={ChangePassword} />
                     <Route path='/shows' exact component={ShowsList} />
                     <Route path='/shows/:id' exact component={ShowDetail} />
                     <Route path='/shows/:sid/:eid' exact component={EpisodeDetail} />
